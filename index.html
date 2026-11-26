@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f1e9db">
+<title>DeutschPro · เรียนเยอรมันเพื่อสอบทำงาน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Noto+Sans+Thai:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f1e9db; --card:#fbf7ee; --cardAlt:#f6efe1;
+  --ink:#221d17; --inkSoft:#5a5046; --inkFaint:#8a7e6f;
+  --line:#dccfb6; --lineSoft:#e7dcc7;
+  --gold:#a8791f; --goldBg:#f3e7c8;
+  --ox:#8a2f29; --oxBg:#f1dcd6;
+  --sage:#4e6b41; --sageBg:#dde8d3;
+  --body:'Newsreader','Noto Sans Thai',Georgia,sans-serif;
+  --disp:'Fraunces','Noto Sans Thai',Georgia,serif;
+  --mono:'Space Mono',monospace;
+}
+html{font-size:17px;-webkit-text-size-adjust:100%;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{margin:0;font-family:var(--body);color:var(--ink);font-size:1rem;line-height:1.55;
+  background:radial-gradient(1200px 600px at 80% -10%,var(--cardAlt),var(--paper));background-attachment:fixed;min-height:100vh;
+  padding-bottom:calc(84px + env(safe-area-inset-bottom));}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit;}
+button{cursor:pointer;}
+.hidden{display:none !important;}
+.mono{font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;font-size:.68rem;}
+h1,h2,h3{font-family:var(--disp);font-weight:400;letter-spacing:-.01em;margin:0;}
+
+/* ---------- header / nav ---------- */
+header.top{position:sticky;top:0;z-index:30;background:rgba(241,233,219,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.top-in{max-width:1000px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;margin-right:auto;}
+.logo-mark{width:34px;height:34px;border-radius:9px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:var(--disp);font-weight:600;font-size:1.05rem;}
+.logo-name{font-family:var(--disp);font-weight:600;font-size:1.1rem;}
+.toptabs{display:flex;gap:4px;}
+.toptabs button{border:none;background:transparent;padding:8px 14px;border-radius:9px;color:var(--inkSoft);}
+.toptabs button.on{background:var(--ink);color:var(--paper);}
+.fsbtn{border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:6px 10px;font-weight:600;}
+nav.bottom{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(251,247,238,.97);backdrop-filter:blur(10px);
+  border-top:1px solid var(--line);display:none;padding:6px 6px calc(6px + env(safe-area-inset-bottom));}
+nav.bottom button{flex:1;border:none;background:transparent;display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:6px 0;border-radius:12px;color:var(--inkFaint);font-size:.78rem;}
+nav.bottom button span{font-size:1.35rem;line-height:1;}
+nav.bottom button.on{color:var(--ink);background:var(--goldBg);font-weight:600;}
+@media(max-width:760px){.toptabs{display:none;} nav.bottom{display:flex;}}
+@media(min-width:761px){body{padding-bottom:40px;}}
+
+main{max-width:1000px;margin:0 auto;padding:0 16px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 26px -18px rgba(40,30,15,.3);}
+.sec-title{padding:22px 0 12px;}
+.sec-title h2{font-size:1.9rem;}
+.sec-title p{margin:4px 0 0;color:var(--inkSoft);}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:12px;border:none;background:var(--ink);color:var(--paper);font-weight:500;}
+.btn.ghost{background:var(--card);color:var(--ink);border:1.5px solid var(--line);}
+.btn.big{padding:16px 18px;font-size:1.05rem;}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:99px;border:1.5px solid var(--line);background:var(--card);font-size:.88rem;}
+.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.seg{display:inline-flex;background:var(--lineSoft);border-radius:12px;padding:3px;gap:2px;}
+.seg button{border:none;background:transparent;padding:8px 13px;border-radius:9px;color:var(--inkSoft);font-size:.9rem;white-space:nowrap;}
+.seg button.on{background:var(--card);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.12);}
+.prog{display:block;height:6px;background:var(--lineSoft);border-radius:99px;overflow:hidden;}
+.prog i{display:block;height:100%;border-radius:99px;background:var(--c,var(--ink));transition:width .4s;}
+.empty{text-align:center;color:var(--inkSoft);padding:40px 16px;}
+
+/* article colours */
+.art{font-weight:600;}
+.art-der{color:#2f5d8a;}.art-die{color:#a1352c;}.art-das{color:#3f6b35;}
+.legend{font-size:.82rem;color:var(--inkSoft);display:flex;gap:12px;flex-wrap:wrap;}
+
+/* ---------- home ---------- */
+.hero{padding:26px 0 8px;}
+.hero h1{font-size:clamp(1.9rem,6vw,3rem);line-height:1.12;}
+.hero h1 em{color:var(--ox);}
+.hero p{color:var(--inkSoft);max-width:560px;margin:10px 0 0;}
+.cont{display:flex;align-items:center;gap:14px;padding:18px;margin:18px 0;width:100%;text-align:left;border:1.5px solid var(--gold);background:var(--goldBg);}
+.cont .ic{font-size:1.8rem;}
+.cont b{display:block;font-size:1.08rem;}
+.cont small{color:var(--inkSoft);}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
+.lvlrow{display:block;width:100%;text-align:left;padding:14px 16px;border:1px solid var(--line);background:var(--card);border-radius:14px;margin-bottom:10px;}
+.lvlrow .t{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.stat{padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer;width:100%;text-align:left;}
+.stat .n{font-family:var(--disp);font-size:1.8rem;}
+.steps{margin:0;padding-left:1.2em;color:var(--inkSoft);}
+.steps li{margin:6px 0;}
+
+/* ---------- vocab ---------- */
+.lvlbar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.lvl{border:1.5px solid var(--line);background:var(--card);border-radius:13px;padding:10px 12px;text-align:left;}
+.lvl.on{border-color:var(--c);background:var(--bg);}
+.lvl .lt{display:flex;justify-content:space-between;align-items:center;gap:4px;}
+.lvl .lt b{font-size:1rem;}
+.lvl .ln{font-size:.78rem;color:var(--inkSoft);display:block;margin:2px 0 6px;}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px;}
+.fcard{position:relative;min-height:300px;padding:26px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  border-top:5px solid var(--c,var(--ink));cursor:pointer;user-select:none;}
+.fcard.anim{animation:flip .28s ease;}
+@keyframes flip{from{transform:rotateY(70deg);opacity:.3}to{transform:none;opacity:1}}
+.fc-tags{position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;}
+.tag{font-size:.75rem;padding:3px 9px;border-radius:99px;background:var(--lineSoft);color:var(--inkSoft);}
+.tag.ok{background:var(--sageBg);color:var(--sage);font-weight:600;}
+.fc-word{font-family:var(--disp);font-size:clamp(1.9rem,7vw,2.8rem);margin:14px 0 16px;line-height:1.15;}
+.fc-hint{margin-top:16px;font-size:.82rem;color:var(--inkFaint);}
+.fc-th{font-size:1.9rem;color:var(--ox);font-weight:600;line-height:1.25;}
+.fc-en{font-style:italic;color:var(--inkSoft);margin-top:2px;}
+.fc-sep{width:50px;height:1px;background:var(--line);margin:16px 0;}
+.fc-ex{font-size:1.1rem;}
+.fc-exth{color:var(--inkFaint);font-size:.95rem;margin-top:4px;}
+.cardnav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0;}
+.navbtn{width:48px;height:48px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font-size:1.4rem;}
+.cardnav .mid{flex:1;text-align:center;font-family:var(--mono);font-size:.8rem;color:var(--inkFaint);}
+.cardnav .mid .prog{margin-top:6px;}
+.bigbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.bigbtns .no{background:var(--oxBg);color:var(--ox);}
+.bigbtns .yes{background:var(--sage);color:#fff;}
+.hint{text-align:center;font-size:.8rem;color:var(--inkFaint);margin:12px 0 0;}
+.search{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);outline:none;margin-bottom:10px;}
+.search:focus{border-color:var(--gold);}
+.row{display:flex;align-items:flex-start;gap:10px;padding:12px;border-bottom:1px solid var(--lineSoft);}
+.row:last-child{border-bottom:none;}
+.chk{flex:none;width:30px;height:30px;border-radius:8px;border:1.5px solid var(--line);background:var(--card);color:#fff;font-weight:700;}
+.row.k .chk{background:var(--sage);border-color:var(--sage);}
+.row-main{flex:1;cursor:pointer;min-width:0;}
+.row-main .pos{font-size:.72rem;color:var(--inkFaint);}
+.row-th{color:var(--inkSoft);font-size:.95rem;}
+.row-ex{margin-top:6px;font-size:.92rem;background:var(--cardAlt);padding:8px 10px;border-radius:8px;}
+.row-ex span{color:var(--inkFaint);}
+.say{flex:none;border:none;background:transparent;font-size:1.15rem;padding:4px;}
+.qcard{padding:24px 20px;border-top:5px solid var(--c,var(--ink));}
+.qword{font-family:var(--disp);font-size:clamp(1.7rem,6vw,2.4rem);margin:8px 0 18px;line-height:1.2;}
+.opt{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;padding:14px 15px;border-radius:12px;
+  border:1.5px solid var(--line);background:var(--card);margin-bottom:9px;font-size:1rem;}
+.opt .k{font-family:var(--mono);font-size:.7rem;color:var(--inkFaint);border:1px solid var(--line);border-radius:6px;padding:1px 6px;}
+.opt.good{border-color:var(--sage);background:var(--sageBg);color:var(--sage);font-weight:600;}
+.opt.bad{border-color:var(--ox);background:var(--oxBg);color:var(--ox);}
+.qscore{display:flex;justify-content:center;gap:18px;margin-top:12px;font-family:var(--mono);font-size:.8rem;color:var(--inkSoft);}
+
+/* ---------- reading ---------- */
+.passage{padding:22px 20px;}
+.passage h3{font-size:1.5rem;margin-bottom:10px;}
+.passage .txt{font-size:1.12rem;line-height:1.8;}
+.passage .trans{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);color:var(--inkSoft);line-height:1.75;}
+.qbox{padding:18px;margin-top:12px;}
+.qbox .q{font-weight:600;margin-bottom:10px;}
+.result{padding:20px;margin-top:14px;text-align:center;border-top:5px solid var(--sage);}
+
+/* ---------- writing ---------- */
+.wtop{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
+.wtop select{flex:1;min-width:0;padding:12px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);}
+.wcard{padding:20px;border-top:5px solid var(--c,var(--ink));}
+.wtask{font-family:var(--disp);font-size:1.3rem;line-height:1.35;margin:6px 0 4px;}
+textarea{width:100%;min-height:210px;margin-top:12px;padding:14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);
+  font-size:1.05rem;line-height:1.6;resize:vertical;outline:none;}
+textarea:focus{border-color:var(--gold);}
+.wmeta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.72rem;color:var(--inkFaint);margin-top:6px;}
+.wbtns{display:grid;grid-template-columns:auto 1fr auto;gap:8px;margin-top:14px;}
+.mbox{padding:18px 20px;margin-top:12px;}
+.mbox .mt{display:flex;justify-content:space-between;align-items:center;}
+.model{white-space:pre-line;font-size:1.05rem;line-height:1.75;margin-top:8px;}
+ul.tips{margin:8px 0 0;padding-left:1.2em;line-height:1.75;}
+.check-row{display:flex;gap:10px;align-items:flex-start;padding:7px 0;cursor:pointer;}
+.check-row input{margin-top:4px;width:19px;height:19px;accent-color:var(--sage);flex:none;}
+
+/* ---------- toast ---------- */
+#toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);opacity:0;
+  background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:99px;font-size:.92rem;z-index:60;transition:.25s;pointer-events:none;white-space:nowrap;}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+footer{text-align:center;color:var(--inkFaint);padding:30px 16px 10px;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="logo" data-v="home">
+      <div class="logo-mark">D</div>
+      <div class="logo-name">Deutsch<span style="color:var(--ox)">Pro</span></div>
+    </div>
+    <div class="toptabs">
+      <button data-v="home">หน้าแรก</button>
+      <button data-v="vocab">คำศัพท์</button>
+      <button data-v="read">การอ่าน</button>
+      <button data-v="write">การเขียน</button>
+    </div>
+    <button class="fsbtn" id="fsBtn" title="ปรับขนาดตัวอักษร">ก<small>A</small></button>
+  </div>
+</header>
+
+<main>
+  <!-- ================= HOME ================= -->
+  <section id="home">
+    <div class="hero">
+      <div class="mono" style="color:var(--ox)">เรียนเองเพื่อสอบทำงานที่เยอรมนี</div>
+      <h1>เรียนเยอรมัน <em>วันละนิด</em><br>สอบผ่านแน่นอน</h1>
+      <p>คำศัพท์ 900 คำ 3 ระดับ · บทอ่านพร้อมคำถาม · โจทย์เขียนพร้อมเฉลย ใช้ได้แม้ไม่มีอินเทอร์เน็ต ระบบจำความคืบหน้าให้อัตโนมัติ</p>
+    </div>
+    <button class="card cont" id="contBtn"></button>
+
+    <div class="grid2">
+      <div>
+        <div class="mono" style="color:var(--inkSoft);margin-bottom:8px">ความคืบหน้าคำศัพท์</div>
+        <div id="homeLevels"></div>
+      </div>
+      <div>
+        <div class="mono" style="color:var(--inkSoft);margin-bottom:8px">ฝึกอ่านและเขียน</div>
+        <button class="card stat" data-v="read" style="margin-bottom:10px">
+          <span style="font-size:1.6rem">📖</span>
+          <span style="flex:1"><b>การอ่าน</b><br><small style="color:var(--inkSoft)">ทำเสร็จแล้ว</small></span>
+          <span class="n" id="statRead">0</span>
+        </button>
+        <button class="card stat" data-v="write">
+          <span style="font-size:1.6rem">✍️</span>
+          <span style="flex:1"><b>การเขียน</b><br><small style="color:var(--inkSoft)">ดูเฉลยแล้ว</small></span>
+          <span class="n" id="statWrite">0</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card" style="padding:18px 20px;margin-top:16px">
+      <b>วิธีใช้แบบง่าย</b>
+      <ol class="steps">
+        <li><b>คำศัพท์</b>: เลือกระดับ แตะการ์ดเพื่อดูความหมาย แล้วกด <b>“จำได้”</b> หรือ <b>“ยังไม่จำ”</b> ระบบจะไปคำถัดไปเอง</li>
+        <li>เลือกตัวกรอง <b>“ยังไม่จำ”</b> เพื่อทบทวนเฉพาะคำที่ยังไม่แม่น</li>
+        <li><b>การเขียน</b>: พิมพ์คำตอบ (บันทึกอัตโนมัติ) แล้วกด “ดูเฉลย” เทียบกับตัวอย่าง พร้อมเช็กลิสต์</li>
+      </ol>
+    </div>
+    <div style="text-align:center;margin-top:18px">
+      <button class="chip" id="resetBtn">↺ ล้างความคืบหน้าทั้งหมด</button>
+    </div>
+  </section>
+
+  <!-- ================= VOCAB ================= -->
+  <section id="vocab" class="hidden">
+    <div class="sec-title"><h2>คำศัพท์</h2><p>Wortschatz · ระดับละ 300 คำ</p></div>
+    <div class="lvlbar" id="lvlbar"></div>
+    <div class="toolbar">
+      <div class="seg" id="modeSeg">
+        <button data-mode="cards">🃏 การ์ด</button>
+        <button data-mode="list">📋 รายการ</button>
+        <button data-mode="quiz">❓ ควิซ</button>
+      </div>
+      <div class="seg" id="filterSeg">
+        <button data-f="all">ทั้งหมด</button>
+        <button data-f="new">ยังไม่จำ</button>
+        <button data-f="known">จำแล้ว</button>
+      </div>
+      <button class="chip" id="shuffleBtn">🔀 สุ่มลำดับ</button>
+    </div>
+
+    <!-- cards -->
+    <div id="pane-cards">
+      <div id="cardWrap">
+        <div class="card fcard" id="fcard"></div>
+        <div class="cardnav">
+          <button class="navbtn" id="prevBtn" aria-label="คำก่อนหน้า">‹</button>
+          <div class="mid"><span id="cardCount"></span><span class="prog"><i id="cardProg"></i></span></div>
+          <button class="navbtn" id="nextBtn" aria-label="คำถัดไป">›</button>
+        </div>
+        <div class="bigbtns">
+          <button class="btn big no" id="noBtn">✕ ยังไม่จำ</button>
+          <button class="btn big yes" id="yesBtn">✓ จำได้แล้ว</button>
+        </div>
+        <p class="hint">แตะการ์ดเพื่อพลิก · ปัดซ้าย/ขวาเพื่อเปลี่ยนคำ<br>คีย์บอร์ด: Space พลิก · ← → เปลี่ยนคำ · ↑ จำได้ · ↓ ยังไม่จำ</p>
+      </div>
+      <div class="card empty hidden" id="cardEmpty"></div>
+    </div>
+
+    <!-- list -->
+    <div id="pane-list" class="hidden">
+      <input class="search" id="search" type="search" placeholder="🔍 ค้นหาคำ (เยอรมัน / ไทย / อังกฤษ)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div class="legend"><span><span class="art art-der">der</span> เพศชาย</span><span><span class="art art-die">die</span> เพศหญิง/พหูพจน์</span><span><span class="art art-das">das</span> เพศกลาง</span></div>
+        <span class="mono" style="color:var(--inkFaint)" id="listCount"></span>
+      </div>
+      <div class="card" id="wordlist"></div>
+    </div>
+
+    <!-- quiz -->
+    <div id="pane-quiz" class="hidden">
+      <div style="display:flex;justify-content:center;margin-bottom:12px">
+        <div class="seg" id="dirSeg">
+          <button data-dir="de">เยอรมัน → ไทย</button>
+          <button data-dir="th">ไทย → เยอรมัน</button>
+        </div>
+      </div>
+      <div class="card qcard" id="qcard"></div>
+      <div class="qscore"><span id="qScore"></span><span id="qStreak"></span></div>
+      <p class="hint">กดเลข 1–4 เพื่อตอบ · Enter ไปข้อถัดไป · ถ้าตอบถูกจะไปข้อต่อไปเอง</p>
+    </div>
+  </section>
+
+  <!-- ================= READ ================= -->
+  <section id="read" class="hidden">
+    <div class="sec-title"><h2>การอ่าน</h2><p>Lesen · อ่านแล้วแตะคำตอบ ระบบจะบอกถูก/ผิดทันที</p></div>
+    <div class="seg" id="readSeg" style="margin-bottom:12px"></div>
+    <div class="card passage">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+        <h3 id="rTitle"></h3>
+        <button class="chip" id="rSay">🔊 ฟัง</button>
+      </div>
+      <div class="txt" id="rText"></div>
+      <button class="chip" id="rTransBtn" style="margin-top:14px">🇹🇭 แสดงคำแปลไทย</button>
+      <div class="trans hidden" id="rTrans"></div>
+    </div>
+    <div id="rQs"></div>
+    <div id="rResult"></div>
+  </section>
+
+  <!-- ================= WRITE ================= -->
+  <section id="write" class="hidden">
+    <div class="sec-title"><h2>การเขียน</h2><p>Schreiben · เขียนเอง แล้วเทียบกับเฉลยตัวอย่าง</p></div>
+    <div class="wtop">
+      <select id="wSel" aria-label="เลือกโจทย์"></select>
+    </div>
+    <div class="card wcard" id="wcard">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="tag" id="wLvl"></span>
+        <span class="mono" style="color:var(--inkFaint)" id="wNum"></span>
+      </div>
+      <div class="wtask" id="wTask"></div>
+      <div style="color:var(--inkSoft)" id="wTh"></div>
+      <textarea id="wText" placeholder="พิมพ์คำตอบเป็นภาษาเยอรมันที่นี่… (บันทึกอัตโนมัติ)"></textarea>
+      <div class="wmeta"><span id="wCount">0 คำ</span><span id="wSaved"></span></div>
+      <div class="wbtns">
+        <button class="btn ghost" id="wPrev" aria-label="โจทย์ก่อนหน้า">‹</button>
+        <button class="btn" id="wShow">ดูเฉลย + เช็กลิสต์</button>
+        <button class="btn ghost" id="wNext" aria-label="โจทย์ถัดไป">›</button>
+      </div>
+    </div>
+    <div id="wModel"></div>
+  </section>
+
+  <footer class="mono">DeutschPro · Viel Erfolg bei der Prüfung 🇩🇪</footer>
+</main>
+
+<nav class="bottom">
+  <button data-v="home"><span>🏠</span>หน้าแรก</button>
+  <button data-v="vocab"><span>📚</span>คำศัพท์</button>
+  <button data-v="read"><span>📖</span>การอ่าน</button>
+  <button data-v="write"><span>✍️</span>การเขียน</button>
+</nav>
+<div id="toast"></div>
+
+<script>
+const LEVELS = [
+  {id:"einfach", de:"Einfach", th:"ง่าย", cefr:"A1–A2", color:"var(--sage)", bg:"var(--sageBg)"},
+  {id:"mittel",  de:"Mittel",  th:"ปานกลาง", cefr:"B1", color:"var(--gold)", bg:"var(--goldBg)"},
+  {id:"schwer",  de:"Schwer",  th:"ยาก", cefr:"B2–C1", color:"var(--ox)", bg:"var(--oxBg)"},
+];
+
+const VOCAB = {
+einfach:[
+["der Mann","น.","ผู้ชาย","man","Der Mann ist groß.","ผู้ชายตัวสูง"],
+["die Frau","น.","ผู้หญิง","woman","Die Frau liest.","ผู้หญิงกำลังอ่าน"],
+["das Kind","น.","เด็ก","child","Das Kind spielt.","เด็กกำลังเล่น"],
+["der Junge","น.","เด็กผู้ชาย","boy","Der Junge lacht.","เด็กผู้ชายหัวเราะ"],
+["das Mädchen","น.","เด็กผู้หญิง","girl","Das Mädchen singt.","เด็กผู้หญิงร้องเพลง"],
+["die Familie","น.","ครอบครัว","family","Meine Familie ist groß.","ครอบครัวฉันใหญ่"],
+["die Mutter","น.","แม่","mother","Meine Mutter kocht.","แม่ฉันทำอาหาร"],
+["der Vater","น.","พ่อ","father","Mein Vater arbeitet.","พ่อฉันทำงาน"],
+["die Eltern","น.","พ่อแม่","parents","Meine Eltern wohnen hier.","พ่อแม่ฉันอยู่ที่นี่"],
+["der Sohn","น.","ลูกชาย","son","Der Sohn ist klein.","ลูกชายยังเล็ก"],
+["die Tochter","น.","ลูกสาว","daughter","Die Tochter lernt.","ลูกสาวกำลังเรียน"],
+["der Bruder","น.","พี่/น้องชาย","brother","Mein Bruder spielt Fußball.","พี่ชายฉันเล่นบอล"],
+["die Schwester","น.","พี่/น้องสาว","sister","Meine Schwester ist nett.","น้องสาวฉันใจดี"],
+["der Freund","น.","เพื่อน(ชาย)","friend","Mein Freund kommt.","เพื่อนฉันมา"],
+["die Freundin","น.","เพื่อน(หญิง)","friend(f)","Meine Freundin wohnt hier.","เพื่อนฉันอยู่ที่นี่"],
+["der Name","น.","ชื่อ","name","Mein Name ist Anna.","ฉันชื่ออันนา"],
+["der Mensch","น.","มนุษย์/คน","person","Der Mensch lernt.","คนเรียนรู้"],
+["die Leute","น.","ผู้คน","people","Die Leute warten.","ผู้คนรออยู่"],
+["der Nachbar","น.","เพื่อนบ้าน","neighbour","Mein Nachbar ist alt.","เพื่อนบ้านฉันแก่แล้ว"],
+["das Baby","น.","ทารก","baby","Das Baby schläft.","ทารกกำลังนอน"],
+["der Kopf","น.","หัว","head","Mein Kopf tut weh.","หัวฉันปวด"],
+["das Auge","น.","ตา","eye","Mein Auge ist rot.","ตาฉันแดง"],
+["die Nase","น.","จมูก","nose","Die Nase ist klein.","จมูกเล็ก"],
+["der Mund","น.","ปาก","mouth","Der Mund ist offen.","ปากเปิดอยู่"],
+["das Ohr","น.","หู","ear","Das Ohr tut weh.","หูฉันปวด"],
+["die Hand","น.","มือ","hand","Die Hand ist kalt.","มือเย็น"],
+["der Arm","น.","แขน","arm","Der Arm ist lang.","แขนยาว"],
+["das Bein","น.","ขา","leg","Das Bein tut weh.","ขาฉันปวด"],
+["der Fuß","น.","เท้า","foot","Mein Fuß ist klein.","เท้าฉันเล็ก"],
+["der Bauch","น.","ท้อง","belly","Der Bauch tut weh.","ท้องฉันปวด"],
+["das Haar","น.","ผม","hair","Das Haar ist lang.","ผมยาว"],
+["das Herz","น.","หัวใจ","heart","Das Herz schlägt.","หัวใจเต้น"],
+["der Zahn","น.","ฟัน","tooth","Der Zahn tut weh.","ฟันฉันปวด"],
+["das Gesicht","น.","ใบหน้า","face","Das Gesicht ist schön.","ใบหน้าสวย"],
+["das Essen","น.","อาหาร","food","Das Essen ist gut.","อาหารอร่อย"],
+["das Brot","น.","ขนมปัง","bread","Ich esse Brot.","ฉันกินขนมปัง"],
+["das Wasser","น.","น้ำ","water","Ich trinke Wasser.","ฉันดื่มน้ำ"],
+["der Kaffee","น.","กาแฟ","coffee","Ich trinke Kaffee.","ฉันดื่มกาแฟ"],
+["der Tee","น.","ชา","tea","Der Tee ist heiß.","ชาร้อน"],
+["die Milch","น.","นม","milk","Die Milch ist kalt.","นมเย็น"],
+["der Saft","น.","น้ำผลไม้","juice","Der Saft ist süß.","น้ำผลไม้หวาน"],
+["das Bier","น.","เบียร์","beer","Das Bier ist kalt.","เบียร์เย็น"],
+["der Wein","น.","ไวน์","wine","Der Wein ist rot.","ไวน์แดง"],
+["der Apfel","น.","แอปเปิล","apple","Der Apfel ist rot.","แอปเปิลสีแดง"],
+["die Banane","น.","กล้วย","banana","Die Banane ist gelb.","กล้วยสีเหลือง"],
+["das Obst","น.","ผลไม้","fruit","Ich esse Obst.","ฉันกินผลไม้"],
+["das Gemüse","น.","ผัก","vegetable","Gemüse ist gesund.","ผักดีต่อสุขภาพ"],
+["das Fleisch","น.","เนื้อ","meat","Ich esse kein Fleisch.","ฉันไม่กินเนื้อ"],
+["der Fisch","น.","ปลา","fish","Der Fisch ist frisch.","ปลาสด"],
+["das Ei","น.","ไข่","egg","Das Ei ist frisch.","ไข่สด"],
+["der Reis","น.","ข้าว","rice","Ich esse Reis.","ฉันกินข้าว"],
+["der Käse","น.","ชีส","cheese","Der Käse ist gut.","ชีสอร่อย"],
+["der Zucker","น.","น้ำตาล","sugar","Der Zucker ist süß.","น้ำตาลหวาน"],
+["das Salz","น.","เกลือ","salt","Das Salz ist weiß.","เกลือสีขาว"],
+["das Frühstück","น.","อาหารเช้า","breakfast","Das Frühstück ist fertig.","อาหารเช้าพร้อมแล้ว"],
+["das Mittagessen","น.","อาหารกลางวัน","lunch","Das Mittagessen ist gut.","อาหารกลางวันอร่อย"],
+["das Abendessen","น.","อาหารเย็น","dinner","Das Abendessen ist spät.","อาหารเย็นสายแล้ว"],
+["das Haus","น.","บ้าน","house","Das Haus ist groß.","บ้านใหญ่"],
+["die Wohnung","น.","อพาร์ตเมนต์","flat","Die Wohnung ist klein.","อพาร์ตเมนต์เล็ก"],
+["das Zimmer","น.","ห้อง","room","Das Zimmer ist sauber.","ห้องสะอาด"],
+["die Küche","น.","ครัว","kitchen","Die Küche ist neu.","ครัวใหม่"],
+["das Bad","น.","ห้องน้ำ","bathroom","Das Bad ist klein.","ห้องน้ำเล็ก"],
+["die Tür","น.","ประตู","door","Die Tür ist offen.","ประตูเปิด"],
+["das Fenster","น.","หน้าต่าง","window","Das Fenster ist zu.","หน้าต่างปิด"],
+["der Tisch","น.","โต๊ะ","table","Der Tisch ist neu.","โต๊ะใหม่"],
+["der Stuhl","น.","เก้าอี้","chair","Der Stuhl ist alt.","เก้าอี้เก่า"],
+["das Bett","น.","เตียง","bed","Das Bett ist weich.","เตียงนุ่ม"],
+["der Schrank","น.","ตู้","cupboard","Der Schrank ist voll.","ตู้เต็ม"],
+["die Lampe","น.","โคมไฟ","lamp","Die Lampe ist hell.","โคมไฟสว่าง"],
+["der Schlüssel","น.","กุญแจ","key","Der Schlüssel ist weg.","กุญแจหาย"],
+["die Uhr","น.","นาฬิกา","clock","Die Uhr ist neu.","นาฬิกาใหม่"],
+["das Telefon","น.","โทรศัพท์","phone","Das Telefon klingelt.","โทรศัพท์ดัง"],
+["der Garten","น.","สวน","garden","Der Garten ist schön.","สวนสวย"],
+["die Kleidung","น.","เสื้อผ้า","clothing","Die Kleidung ist neu.","เสื้อผ้าใหม่"],
+["das Hemd","น.","เสื้อเชิ้ต","shirt","Das Hemd ist weiß.","เสื้อเชิ้ตสีขาว"],
+["die Hose","น.","กางเกง","trousers","Die Hose ist blau.","กางเกงสีน้ำเงิน"],
+["der Schuh","น.","รองเท้า","shoe","Der Schuh ist neu.","รองเท้าใหม่"],
+["die Jacke","น.","แจ็กเก็ต","jacket","Die Jacke ist warm.","แจ็กเก็ตอุ่น"],
+["das Kleid","น.","ชุดเดรส","dress","Das Kleid ist rot.","ชุดสีแดง"],
+["die Tasche","น.","กระเป๋า","bag","Die Tasche ist schwer.","กระเป๋าหนัก"],
+["der Hut","น.","หมวก","hat","Der Hut ist groß.","หมวกใหญ่"],
+["die Zeit","น.","เวลา","time","Ich habe Zeit.","ฉันมีเวลา"],
+["der Tag","น.","วัน","day","Der Tag ist lang.","วันยาวนาน"],
+["die Nacht","น.","กลางคืน","night","Die Nacht ist ruhig.","กลางคืนเงียบ"],
+["die Stunde","น.","ชั่วโมง","hour","Eine Stunde später.","หนึ่งชั่วโมงต่อมา"],
+["die Minute","น.","นาที","minute","Nur eine Minute.","แค่หนึ่งนาที"],
+["die Woche","น.","สัปดาห์","week","Diese Woche.","สัปดาห์นี้"],
+["der Monat","น.","เดือน","month","Nächsten Monat.","เดือนหน้า"],
+["das Jahr","น.","ปี","year","Ein Jahr später.","หนึ่งปีต่อมา"],
+["der Morgen","น.","ตอนเช้า","morning","Guten Morgen!","อรุณสวัสดิ์"],
+["der Abend","น.","ตอนเย็น","evening","Guten Abend!","สวัสดีตอนเย็น"],
+["der Montag","น.","วันจันทร์","Monday","Am Montag arbeite ich.","วันจันทร์ฉันทำงาน"],
+["der Dienstag","น.","วันอังคาร","Tuesday","Am Dienstag habe ich frei.","วันอังคารฉันหยุด"],
+["der Mittwoch","น.","วันพุธ","Wednesday","Am Mittwoch lerne ich.","วันพุธฉันเรียน"],
+["der Donnerstag","น.","วันพฤหัส","Thursday","Am Donnerstag koche ich.","วันพฤหัสฉันทำอาหาร"],
+["der Freitag","น.","วันศุกร์","Friday","Am Freitag ist Party.","วันศุกร์มีปาร์ตี้"],
+["der Samstag","น.","วันเสาร์","Saturday","Am Samstag schlafe ich.","วันเสาร์ฉันนอน"],
+["der Sonntag","น.","วันอาทิตย์","Sunday","Am Sonntag ruhe ich.","วันอาทิตย์ฉันพัก"],
+["heute","คุณ.","วันนี้","today","Heute arbeite ich.","วันนี้ฉันทำงาน"],
+["morgen","คุณ.","พรุ่งนี้","tomorrow","Morgen komme ich.","พรุ่งนี้ฉันมา"],
+["gestern","คุณ.","เมื่อวาน","yesterday","Gestern war ich krank.","เมื่อวานฉันป่วย"],
+["jetzt","คุณ.","ตอนนี้","now","Jetzt gehe ich.","ตอนนี้ฉันไป"],
+["früh","คุณ.","เช้า/แต่เนิ่นๆ","early","Ich stehe früh auf.","ฉันตื่นเช้า"],
+["spät","คุณ.","สาย/ดึก","late","Es ist spät.","ดึกแล้ว"],
+["das Wetter","น.","อากาศ","weather","Das Wetter ist schön.","อากาศดี"],
+["die Sonne","น.","ดวงอาทิตย์","sun","Die Sonne scheint.","แดดออก"],
+["der Regen","น.","ฝน","rain","Der Regen kommt.","ฝนกำลังมา"],
+["der Schnee","น.","หิมะ","snow","Der Schnee ist weiß.","หิมะสีขาว"],
+["der Wind","น.","ลม","wind","Der Wind ist stark.","ลมแรง"],
+["der Himmel","น.","ท้องฟ้า","sky","Der Himmel ist blau.","ท้องฟ้าสีฟ้า"],
+["der Baum","น.","ต้นไม้","tree","Der Baum ist hoch.","ต้นไม้สูง"],
+["die Blume","น.","ดอกไม้","flower","Die Blume ist schön.","ดอกไม้สวย"],
+["das Meer","น.","ทะเล","sea","Das Meer ist groß.","ทะเลกว้างใหญ่"],
+["der Berg","น.","ภูเขา","mountain","Der Berg ist hoch.","ภูเขาสูง"],
+["der Hund","น.","สุนัข","dog","Der Hund bellt.","สุนัขเห่า"],
+["die Katze","น.","แมว","cat","Die Katze schläft.","แมวนอน"],
+["der Vogel","น.","นก","bird","Der Vogel singt.","นกร้อง"],
+["das Pferd","น.","ม้า","horse","Das Pferd läuft.","ม้าวิ่ง"],
+["das Tier","น.","สัตว์","animal","Das Tier ist klein.","สัตว์ตัวเล็ก"],
+["die Stadt","น.","เมือง","city","Die Stadt ist groß.","เมืองใหญ่"],
+["das Dorf","น.","หมู่บ้าน","village","Das Dorf ist klein.","หมู่บ้านเล็ก"],
+["die Straße","น.","ถนน","street","Die Straße ist lang.","ถนนยาว"],
+["der Platz","น.","ลาน/ที่","place","Der Platz ist voll.","ลานเต็มไปด้วยคน"],
+["der Markt","น.","ตลาด","market","Der Markt ist offen.","ตลาดเปิด"],
+["das Geschäft","น.","ร้านค้า","shop","Das Geschäft ist zu.","ร้านปิด"],
+["die Bank","น.","ธนาคาร","bank","Die Bank ist hier.","ธนาคารอยู่ตรงนี้"],
+["die Post","น.","ไปรษณีย์","post office","Die Post ist zu.","ไปรษณีย์ปิด"],
+["das Krankenhaus","น.","โรงพยาบาล","hospital","Das Krankenhaus ist groß.","โรงพยาบาลใหญ่"],
+["die Schule","น.","โรงเรียน","school","Die Schule beginnt.","โรงเรียนเริ่ม"],
+["das Büro","น.","สำนักงาน","office","Das Büro ist klein.","ออฟฟิศเล็ก"],
+["das Restaurant","น.","ร้านอาหาร","restaurant","Das Restaurant ist gut.","ร้านอาหารดี"],
+["das Hotel","น.","โรงแรม","hotel","Das Hotel ist teuer.","โรงแรมแพง"],
+["der Bahnhof","น.","สถานีรถไฟ","train station","Der Bahnhof ist groß.","สถานีรถไฟใหญ่"],
+["der Flughafen","น.","สนามบิน","airport","Der Flughafen ist weit.","สนามบินไกล"],
+["die Kirche","น.","โบสถ์","church","Die Kirche ist alt.","โบสถ์เก่า"],
+["der Park","น.","สวนสาธารณะ","park","Der Park ist schön.","สวนสวย"],
+["die Apotheke","น.","ร้านขายยา","pharmacy","Die Apotheke ist zu.","ร้านยาปิด"],
+["der Supermarkt","น.","ซูเปอร์มาร์เก็ต","supermarket","Der Supermarkt ist offen.","ซูเปอร์เปิด"],
+["das Auto","น.","รถยนต์","car","Das Auto ist neu.","รถใหม่"],
+["der Bus","น.","รถบัส","bus","Der Bus kommt.","รถบัสมา"],
+["der Zug","น.","รถไฟ","train","Der Zug ist spät.","รถไฟสาย"],
+["das Fahrrad","น.","จักรยาน","bicycle","Das Fahrrad ist alt.","จักรยานเก่า"],
+["das Flugzeug","น.","เครื่องบิน","plane","Das Flugzeug fliegt.","เครื่องบินบิน"],
+["das Taxi","น.","แท็กซี่","taxi","Das Taxi wartet.","แท็กซี่รออยู่"],
+["die Fahrkarte","น.","ตั๋วโดยสาร","ticket","Die Fahrkarte ist teuer.","ตั๋วแพง"],
+["der Weg","น.","ทาง","way","Der Weg ist lang.","ทางยาว"],
+["die Arbeit","น.","งาน","work","Die Arbeit ist fertig.","งานเสร็จ"],
+["der Beruf","น.","อาชีพ","profession","Was ist Ihr Beruf?","คุณทำอาชีพอะไร"],
+["der Chef","น.","หัวหน้า","boss","Der Chef kommt.","หัวหน้ามา"],
+["das Geld","น.","เงิน","money","Ich brauche Geld.","ฉันต้องการเงิน"],
+["der Lehrer","น.","ครู(ชาย)","teacher","Der Lehrer erklärt.","ครูอธิบาย"],
+["der Arzt","น.","หมอ","doctor","Der Arzt hilft.","หมอช่วย"],
+["das Buch","น.","หนังสือ","book","Das Buch ist gut.","หนังสือดี"],
+["das Wort","น.","คำ","word","Das Wort ist neu.","คำนี้ใหม่"],
+["die Frage","น.","คำถาม","question","Ich habe eine Frage.","ฉันมีคำถาม"],
+["die Antwort","น.","คำตอบ","answer","Die Antwort ist richtig.","คำตอบถูก"],
+["der Brief","น.","จดหมาย","letter","Der Brief ist kurz.","จดหมายสั้น"],
+["die Sprache","น.","ภาษา","language","Deutsch ist eine Sprache.","เยอรมันเป็นภาษาหนึ่ง"],
+["sein","ก.","เป็น/อยู่/คือ","to be","Ich bin müde.","ฉันเหนื่อย"],
+["haben","ก.","มี","to have","Ich habe Zeit.","ฉันมีเวลา"],
+["machen","ก.","ทำ","to do/make","Was machst du?","เธอทำอะไร"],
+["gehen","ก.","ไป(เดิน)","to go","Ich gehe nach Hause.","ฉันกลับบ้าน"],
+["kommen","ก.","มา","to come","Er kommt morgen.","เขามาพรุ่งนี้"],
+["essen","ก.","กิน","to eat","Wir essen zusammen.","เรากินด้วยกัน"],
+["trinken","ก.","ดื่ม","to drink","Sie trinkt Tee.","เธอดื่มชา"],
+["arbeiten","ก.","ทำงาน","to work","Ich arbeite viel.","ฉันทำงานเยอะ"],
+["lernen","ก.","เรียน","to learn","Ich lerne Deutsch.","ฉันเรียนเยอรมัน"],
+["sprechen","ก.","พูด","to speak","Sprechen Sie Deutsch?","คุณพูดเยอรมันไหม"],
+["sagen","ก.","พูด/บอก","to say","Was sagst du?","เธอพูดอะไร"],
+["verstehen","ก.","เข้าใจ","to understand","Ich verstehe nicht.","ฉันไม่เข้าใจ"],
+["lesen","ก.","อ่าน","to read","Ich lese ein Buch.","ฉันอ่านหนังสือ"],
+["schreiben","ก.","เขียน","to write","Ich schreibe einen Brief.","ฉันเขียนจดหมาย"],
+["sehen","ก.","เห็น/ดู","to see","Ich sehe dich.","ฉันเห็นเธอ"],
+["hören","ก.","ได้ยิน/ฟัง","to hear","Ich höre Musik.","ฉันฟังเพลง"],
+["kaufen","ก.","ซื้อ","to buy","Ich kaufe Brot.","ฉันซื้อขนมปัง"],
+["bezahlen","ก.","จ่ายเงิน","to pay","Ich bezahle bar.","ฉันจ่ายเงินสด"],
+["wohnen","ก.","อาศัยอยู่","to live","Ich wohne in Berlin.","ฉันอยู่เบอร์ลิน"],
+["leben","ก.","มีชีวิต","to live","Wir leben gut.","เราใช้ชีวิตดี"],
+["schlafen","ก.","นอน","to sleep","Ich schlafe gut.","ฉันนอนหลับดี"],
+["kochen","ก.","ทำอาหาร","to cook","Ich koche gern.","ฉันชอบทำอาหาร"],
+["spielen","ก.","เล่น","to play","Kinder spielen.","เด็กๆ เล่น"],
+["fahren","ก.","ขับ/โดยสาร","to drive","Ich fahre Auto.","ฉันขับรถ"],
+["fliegen","ก.","บิน","to fly","Wir fliegen nach Thailand.","เราบินไปไทย"],
+["laufen","ก.","วิ่ง/เดิน","to run","Ich laufe schnell.","ฉันวิ่งเร็ว"],
+["geben","ก.","ให้","to give","Gib mir das Buch.","ส่งหนังสือมาให้ฉัน"],
+["nehmen","ก.","เอา/หยิบ","to take","Ich nehme den Bus.","ฉันนั่งรถบัส"],
+["finden","ก.","เจอ/คิดว่า","to find","Ich finde es gut.","ฉันว่ามันดี"],
+["suchen","ก.","หา","to search","Ich suche den Schlüssel.","ฉันหากุญแจ"],
+["brauchen","ก.","ต้องการ","to need","Ich brauche Hilfe.","ฉันต้องการความช่วยเหลือ"],
+["wissen","ก.","รู้","to know","Ich weiß es nicht.","ฉันไม่รู้"],
+["kennen","ก.","รู้จัก","to know(sb)","Ich kenne ihn.","ฉันรู้จักเขา"],
+["denken","ก.","คิด","to think","Ich denke an dich.","ฉันคิดถึงเธอ"],
+["glauben","ก.","เชื่อ","to believe","Ich glaube dir.","ฉันเชื่อเธอ"],
+["lieben","ก.","รัก","to love","Ich liebe dich.","ฉันรักเธอ"],
+["mögen","ก.","ชอบ","to like","Ich mag Kaffee.","ฉันชอบกาแฟ"],
+["möchten","ก.","อยากได้","would like","Ich möchte Wasser.","ฉันขอน้ำ"],
+["wollen","ก.","อยาก/ต้องการ","to want","Ich will schlafen.","ฉันอยากนอน"],
+["können","ก.","สามารถ","can","Ich kann schwimmen.","ฉันว่ายน้ำได้"],
+["müssen","ก.","ต้อง","must","Ich muss gehen.","ฉันต้องไปแล้ว"],
+["dürfen","ก.","ได้รับอนุญาต","may","Darf ich rauchen?","ฉันสูบบุหรี่ได้ไหม"],
+["sollen","ก.","ควร","should","Du sollst lernen.","เธอควรเรียน"],
+["helfen","ก.","ช่วย","to help","Ich helfe dir.","ฉันช่วยเธอ"],
+["fragen","ก.","ถาม","to ask","Ich frage den Lehrer.","ฉันถามครู"],
+["antworten","ก.","ตอบ","to answer","Bitte antworten Sie.","กรุณาตอบ"],
+["öffnen","ก.","เปิด","to open","Öffne die Tür.","เปิดประตู"],
+["schließen","ก.","ปิด","to close","Schließ das Fenster.","ปิดหน้าต่าง"],
+["beginnen","ก.","เริ่ม","to begin","Der Film beginnt.","หนังเริ่มแล้ว"],
+["warten","ก.","รอ","to wait","Ich warte hier.","ฉันรอตรงนี้"],
+["bleiben","ก.","อยู่ต่อ","to stay","Ich bleibe hier.","ฉันอยู่ที่นี่"],
+["bringen","ก.","นำมา","to bring","Bring mir Wasser.","เอาน้ำมาให้ฉัน"],
+["zeigen","ก.","แสดง/ชี้","to show","Zeig mir das.","ให้ฉันดูหน่อย"],
+["treffen","ก.","พบ/เจอ","to meet","Wir treffen uns.","เรานัดเจอกัน"],
+["heißen","ก.","ชื่อว่า","to be called","Ich heiße Anna.","ฉันชื่ออันนา"],
+["putzen","ก.","ทำความสะอาด","to clean","Ich putze das Zimmer.","ฉันทำความสะอาดห้อง"],
+["waschen","ก.","ล้าง/ซัก","to wash","Ich wasche die Hände.","ฉันล้างมือ"],
+["tragen","ก.","ถือ/สวมใส่","to carry/wear","Ich trage die Tasche.","ฉันถือกระเป๋า"],
+["gut","คุณ.","ดี","good","Das ist gut.","นั่นดี"],
+["schlecht","คุณ.","แย่","bad","Das Wetter ist schlecht.","อากาศแย่"],
+["groß","คุณ.","ใหญ่/สูง","big","Das Haus ist groß.","บ้านใหญ่"],
+["klein","คุณ.","เล็ก","small","Die Katze ist klein.","แมวเล็ก"],
+["neu","คุณ.","ใหม่","new","Das Auto ist neu.","รถใหม่"],
+["alt","คุณ.","เก่า/แก่","old","Das Haus ist alt.","บ้านเก่า"],
+["jung","คุณ.","อายุน้อย","young","Sie ist jung.","เธออายุน้อย"],
+["schön","คุณ.","สวย","beautiful","Die Blume ist schön.","ดอกไม้สวย"],
+["lang","คุณ.","ยาว","long","Der Weg ist lang.","ทางยาว"],
+["kurz","คุณ.","สั้น","short","Der Brief ist kurz.","จดหมายสั้น"],
+["schnell","คุณ.","เร็ว","fast","Das Auto ist schnell.","รถเร็ว"],
+["langsam","คุณ.","ช้า","slow","Der Zug ist langsam.","รถไฟช้า"],
+["teuer","คุณ.","แพง","expensive","Das Hotel ist teuer.","โรงแรมแพง"],
+["billig","คุณ.","ถูก","cheap","Das Brot ist billig.","ขนมปังถูก"],
+["warm","คุณ.","อุ่น/ร้อน","warm","Es ist warm.","อากาศอุ่น"],
+["kalt","คุณ.","หนาว/เย็น","cold","Das Wasser ist kalt.","น้ำเย็น"],
+["heiß","คุณ.","ร้อน","hot","Der Kaffee ist heiß.","กาแฟร้อน"],
+["voll","คุณ.","เต็ม","full","Der Bus ist voll.","รถบัสเต็ม"],
+["leer","คุณ.","ว่างเปล่า","empty","Das Glas ist leer.","แก้วว่าง"],
+["sauber","คุณ.","สะอาด","clean","Das Zimmer ist sauber.","ห้องสะอาด"],
+["schmutzig","คุณ.","สกปรก","dirty","Die Hände sind schmutzig.","มือสกปรก"],
+["richtig","คุณ.","ถูกต้อง","correct","Die Antwort ist richtig.","คำตอบถูก"],
+["falsch","คุณ.","ผิด","wrong","Das ist falsch.","นั่นผิด"],
+["einfach","คุณ.","ง่าย","easy","Das ist einfach.","นั่นง่าย"],
+["schwer","คุณ.","ยาก/หนัก","difficult","Deutsch ist schwer.","เยอรมันยาก"],
+["wichtig","คุณ.","สำคัญ","important","Das ist wichtig.","นั่นสำคัญ"],
+["müde","คุณ.","เหนื่อย/ง่วง","tired","Ich bin müde.","ฉันเหนื่อย"],
+["krank","คุณ.","ป่วย","sick","Ich bin krank.","ฉันป่วย"],
+["gesund","คุณ.","สุขภาพดี","healthy","Obst ist gesund.","ผลไม้ดีต่อสุขภาพ"],
+["glücklich","คุณ.","มีความสุข","happy","Ich bin glücklich.","ฉันมีความสุข"],
+["traurig","คุณ.","เศร้า","sad","Sie ist traurig.","เธอเศร้า"],
+["nett","คุณ.","ใจดี/น่ารัก","nice","Er ist nett.","เขาใจดี"],
+["freundlich","คุณ.","เป็นมิตร","friendly","Sie ist freundlich.","เธอเป็นมิตร"],
+["hungrig","คุณ.","หิว","hungry","Ich bin hungrig.","ฉันหิว"],
+["durstig","คุณ.","กระหายน้ำ","thirsty","Ich bin durstig.","ฉันกระหายน้ำ"],
+["reich","คุณ.","รวย","rich","Er ist reich.","เขารวย"],
+["arm","คุณ.","จน","poor","Sie ist nicht arm.","เธอไม่จน"],
+["fertig","คุณ.","เสร็จ/พร้อม","ready","Ich bin fertig.","ฉันเสร็จแล้ว"],
+["bekannt","คุณ.","เป็นที่รู้จัก","well-known","Er ist bekannt.","เขาเป็นที่รู้จัก"],
+["rot","คุณ.","แดง","red","Der Apfel ist rot.","แอปเปิลแดง"],
+["blau","คุณ.","น้ำเงิน","blue","Der Himmel ist blau.","ฟ้าสีน้ำเงิน"],
+["grün","คุณ.","เขียว","green","Das Gras ist grün.","หญ้าเขียว"],
+["gelb","คุณ.","เหลือง","yellow","Die Banane ist gelb.","กล้วยเหลือง"],
+["schwarz","คุณ.","ดำ","black","Die Katze ist schwarz.","แมวดำ"],
+["weiß","คุณ.","ขาว","white","Der Schnee ist weiß.","หิมะขาว"],
+["braun","คุณ.","น้ำตาล","brown","Der Tisch ist braun.","โต๊ะสีน้ำตาล"],
+["grau","คุณ.","เทา","grey","Der Himmel ist grau.","ฟ้าสีเทา"],
+["wer","คุณ.","ใคร","who","Wer ist das?","นั่นใคร"],
+["was","คุณ.","อะไร","what","Was ist das?","นั่นอะไร"],
+["wo","คุณ.","ที่ไหน","where","Wo wohnst du?","เธออยู่ที่ไหน"],
+["wann","คุณ.","เมื่อไหร่","when","Wann kommst du?","เธอมาเมื่อไหร่"],
+["warum","คุณ.","ทำไม","why","Warum weinst du?","ทำไมเธอร้องไห้"],
+["wie","คุณ.","อย่างไร","how","Wie geht es dir?","เธอเป็นอย่างไรบ้าง"],
+["und","คุณ.","และ","and","Brot und Butter.","ขนมปังและเนย"],
+["oder","คุณ.","หรือ","or","Tee oder Kaffee?","ชาหรือกาแฟ"],
+["aber","คุณ.","แต่","but","Es ist klein, aber schön.","มันเล็กแต่สวย"],
+["weil","คุณ.","เพราะ","because","Ich bleibe, weil es regnet.","ฉันอยู่เพราะฝนตก"],
+["dass","คุณ.","ว่า(ที่ว่า)","that","Ich weiß, dass du kommst.","ฉันรู้ว่าเธอจะมา"],
+["nicht","คุณ.","ไม่","not","Ich komme nicht.","ฉันไม่มา"],
+["kein","คุณ.","ไม่มี","no/none","Ich habe kein Geld.","ฉันไม่มีเงิน"],
+["sehr","คุณ.","มาก","very","Das ist sehr gut.","นั่นดีมาก"],
+["auch","คุณ.","ด้วย","also","Ich komme auch.","ฉันมาด้วย"],
+["immer","คุณ.","เสมอ","always","Er ist immer spät.","เขาสายเสมอ"],
+["oft","คุณ.","บ่อย","often","Ich gehe oft.","ฉันไปบ่อย"],
+["manchmal","คุณ.","บางครั้ง","sometimes","Manchmal koche ich.","บางครั้งฉันทำอาหาร"],
+["nie","คุณ.","ไม่เคย","never","Ich rauche nie.","ฉันไม่เคยสูบบุหรี่"],
+["hier","คุณ.","ที่นี่","here","Ich bin hier.","ฉันอยู่ที่นี่"],
+["dort","คุณ.","ที่นั่น","there","Das Haus ist dort.","บ้านอยู่ที่นั่น"],
+["links","คุณ.","ซ้าย","left","Gehen Sie links.","เลี้ยวซ้าย"],
+["rechts","คุณ.","ขวา","right","Gehen Sie rechts.","เลี้ยวขวา"],
+["mit","คุณ.","กับ/ด้วย","with","Ich komme mit dir.","ฉันไปกับเธอ"],
+["ohne","คุณ.","โดยปราศจาก","without","Kaffee ohne Zucker.","กาแฟไม่ใส่น้ำตาล"],
+["für","คุณ.","สำหรับ","for","Das ist für dich.","นี่สำหรับเธอ"],
+["aus","คุณ.","จาก","from","Ich komme aus Thailand.","ฉันมาจากไทย"],
+["nach","คุณ.","ไปยัง/หลังจาก","to/after","Ich fahre nach Berlin.","ฉันไปเบอร์ลิน"],
+["bei","คุณ.","ที่/ตอน","at/by","Ich bin bei der Arbeit.","ฉันอยู่ที่ทำงาน"],
+["viel","คุณ.","มาก","much","Ich habe viel Arbeit.","ฉันมีงานเยอะ"],
+["wenig","คุณ.","น้อย","little","Ich habe wenig Zeit.","ฉันมีเวลาน้อย"],
+["alle","คุณ.","ทั้งหมด","all","Alle kommen.","ทุกคนมา"],
+["zusammen","คุณ.","ด้วยกัน","together","Wir essen zusammen.","เรากินด้วยกัน"],
+["gern","คุณ.","อย่างเต็มใจ/ชอบ","gladly","Ich koche gern.","ฉันชอบทำอาหาร"],
+["das Problem","น.","ปัญหา","problem","Das ist ein Problem.","นั่นเป็นปัญหา"],
+["die Idee","น.","ความคิด","idea","Gute Idee!","ความคิดดี"],
+["die Hilfe","น.","ความช่วยเหลือ","help","Danke für die Hilfe.","ขอบคุณที่ช่วย"]
+],
+mittel:[
+["die Erfahrung","น.","ประสบการณ์","experience","Sie hat viel Erfahrung.","เธอมีประสบการณ์มาก"],
+["die Verantwortung","น.","ความรับผิดชอบ","responsibility","Er übernimmt die Verantwortung.","เขารับผิดชอบ"],
+["die Stelle","น.","ตำแหน่งงาน","position","Ich suche eine Stelle.","ฉันหางาน"],
+["der Arbeitgeber","น.","นายจ้าง","employer","Mein Arbeitgeber ist fair.","นายจ้างฉันยุติธรรม"],
+["der Arbeitnehmer","น.","ลูกจ้าง","employee","Der Arbeitnehmer ist krank.","ลูกจ้างป่วย"],
+["der Arbeitsvertrag","น.","สัญญาจ้าง","contract","Ich unterschreibe den Arbeitsvertrag.","ฉันเซ็นสัญญาจ้าง"],
+["das Gehalt","น.","เงินเดือน","salary","Das Gehalt ist gut.","เงินเดือนดี"],
+["der Lohn","น.","ค่าจ้าง","wage","Der Lohn kommt monatlich.","ค่าจ้างจ่ายรายเดือน"],
+["die Abteilung","น.","แผนก","department","Ich arbeite in der Abteilung.","ฉันทำงานในแผนกนี้"],
+["der Kollege","น.","เพื่อนร่วมงาน","colleague","Mein Kollege hilft mir.","เพื่อนร่วมงานช่วยฉัน"],
+["die Besprechung","น.","การประชุม","meeting","Die Besprechung beginnt.","การประชุมเริ่ม"],
+["das Projekt","น.","โครงการ","project","Das Projekt ist wichtig.","โครงการสำคัญ"],
+["die Aufgabe","น.","ภาระงาน","task","Die Aufgabe ist schwer.","งานยาก"],
+["der Termin","น.","นัดหมาย","appointment","Ich habe einen Termin.","ฉันมีนัด"],
+["die Pause","น.","พักเบรก","break","Wir machen eine Pause.","เราพักเบรก"],
+["die Schicht","น.","กะ(ทำงาน)","shift","Ich habe Nachtschicht.","ฉันเข้ากะดึก"],
+["die Überstunde","น.","ชั่วโมงโอที","overtime","Ich mache Überstunden.","ฉันทำโอที"],
+["die Kündigung","น.","การลาออก/เลิกจ้าง","notice","Ich reiche die Kündigung ein.","ฉันยื่นลาออก"],
+["die Bewerbung","น.","ใบสมัครงาน","application","Ich schicke die Bewerbung.","ฉันส่งใบสมัคร"],
+["der Lebenslauf","น.","ประวัติย่อ","CV","Mein Lebenslauf ist fertig.","เรซูเม่ฉันเสร็จแล้ว"],
+["das Vorstellungsgespräch","น.","การสัมภาษณ์งาน","job interview","Das Gespräch ist morgen.","สัมภาษณ์พรุ่งนี้"],
+["die Ausbildung","น.","การฝึกอาชีพ","training","Ich mache eine Ausbildung.","ฉันฝึกอาชีพ"],
+["der Kunde","น.","ลูกค้า","customer","Der Kunde wartet.","ลูกค้ารออยู่"],
+["die Firma","น.","บริษัท","company","Die Firma ist groß.","บริษัทใหญ่"],
+["das Unternehmen","น.","กิจการ/บริษัท","enterprise","Das Unternehmen wächst.","กิจการเติบโต"],
+["der Mitarbeiter","น.","พนักงาน","staff member","Der Mitarbeiter ist nett.","พนักงานใจดี"],
+["die Behörde","น.","หน่วยงานราชการ","authority","Die Behörde ist geschlossen.","หน่วยงานปิด"],
+["das Amt","น.","สำนักงานราชการ","office (gov)","Ich gehe zum Amt.","ฉันไปสำนักงานราชการ"],
+["der Antrag","น.","คำร้อง","application form","Ich stelle einen Antrag.","ฉันยื่นคำร้อง"],
+["die Unterlagen","น.","เอกสาร","documents","Bringen Sie die Unterlagen mit.","เอาเอกสารมาด้วย"],
+["der Ausweis","น.","บัตรประชาชน","ID card","Zeigen Sie Ihren Ausweis.","แสดงบัตรประชาชน"],
+["der Reisepass","น.","หนังสือเดินทาง","passport","Mein Reisepass ist neu.","พาสปอร์ตฉันใหม่"],
+["das Visum","น.","วีซ่า","visa","Ich brauche ein Visum.","ฉันต้องการวีซ่า"],
+["die Anmeldung","น.","การลงทะเบียน","registration","Die Anmeldung ist nötig.","ต้องลงทะเบียน"],
+["die Genehmigung","น.","การอนุญาต","permit","Wir brauchen eine Genehmigung.","เราต้องการการอนุญาต"],
+["die Erlaubnis","น.","การอนุญาต","permission","Ich habe die Erlaubnis.","ฉันได้รับอนุญาต"],
+["die Versicherung","น.","ประกันภัย","insurance","Die Versicherung zahlt.","ประกันจ่ายให้"],
+["die Steuer","น.","ภาษี","tax","Ich zahle Steuern.","ฉันจ่ายภาษี"],
+["die Frist","น.","กำหนดเวลา","deadline","Die Frist endet morgen.","กำหนดหมดพรุ่งนี้"],
+["das Formular","น.","แบบฟอร์ม","form","Füllen Sie das Formular aus.","กรอกแบบฟอร์ม"],
+["die Bescheinigung","น.","หนังสือรับรอง","certificate","Ich brauche eine Bescheinigung.","ฉันต้องการหนังสือรับรอง"],
+["der Vertrag","น.","สัญญา","contract","Der Vertrag ist gültig.","สัญญามีผล"],
+["die Rechnung","น.","ใบแจ้งหนี้","invoice","Die Rechnung ist falsch.","ใบแจ้งหนี้ผิด"],
+["die Quittung","น.","ใบเสร็จ","receipt","Hier ist die Quittung.","นี่ใบเสร็จ"],
+["das Konto","น.","บัญชี","account","Ich eröffne ein Konto.","ฉันเปิดบัญชี"],
+["die Überweisung","น.","การโอนเงิน","transfer","Die Überweisung dauert.","การโอนใช้เวลา"],
+["die Miete","น.","ค่าเช่า","rent","Die Miete ist hoch.","ค่าเช่าสูง"],
+["die Kosten","น.","ค่าใช้จ่าย","costs","Die Kosten steigen.","ค่าใช้จ่ายเพิ่ม"],
+["der Betrag","น.","จำนวนเงิน","amount","Der Betrag ist hoch.","จำนวนเงินสูง"],
+["das Bargeld","น.","เงินสด","cash","Ich zahle mit Bargeld.","ฉันจ่ายเงินสด"],
+["der Kredit","น.","สินเชื่อ","loan","Ich nehme einen Kredit.","ฉันกู้เงิน"],
+["sparen","ก.","ออม/ประหยัด","to save","Ich spare Geld.","ฉันเก็บเงิน"],
+["verdienen","ก.","หาเงินได้","to earn","Ich verdiene genug.","ฉันหาเงินได้พอ"],
+["ausgeben","ก.","ใช้จ่าย","to spend","Ich gebe wenig aus.","ฉันใช้จ่ายน้อย"],
+["die Gesundheit","น.","สุขภาพ","health","Gesundheit ist wichtig.","สุขภาพสำคัญ"],
+["die Krankheit","น.","โรค","illness","Die Krankheit ist ernst.","โรคร้ายแรง"],
+["die Krankenkasse","น.","กองทุนสุขภาพ","health fund","Die Krankenkasse zahlt.","กองทุนจ่ายให้"],
+["der Termin beim Arzt","น.","นัดหมอ","doctor's appt.","Ich habe einen Termin beim Arzt.","ฉันมีนัดหมอ"],
+["die Praxis","น.","คลินิก","practice","Die Praxis ist geschlossen.","คลินิกปิด"],
+["das Rezept","น.","ใบสั่งยา/สูตร","prescription","Der Arzt gibt ein Rezept.","หมอออกใบสั่งยา"],
+["die Medizin","น.","ยา","medicine","Die Medizin hilft.","ยาช่วยได้"],
+["das Medikament","น.","ตัวยา","medication","Nehmen Sie das Medikament.","กินยานี้"],
+["die Schmerzen","น.","อาการปวด","pain","Ich habe Schmerzen.","ฉันปวด"],
+["der Notfall","น.","เหตุฉุกเฉิน","emergency","Das ist ein Notfall.","นี่เหตุฉุกเฉิน"],
+["sich verletzen","ก.","บาดเจ็บ","to get hurt","Ich habe mich verletzt.","ฉันบาดเจ็บ"],
+["sich erholen","ก.","พักฟื้น","to recover","Ich muss mich erholen.","ฉันต้องพักฟื้น"],
+["untersuchen","ก.","ตรวจ","to examine","Der Arzt untersucht mich.","หมอตรวจฉัน"],
+["die Nachricht","น.","ข้อความ/ข่าว","message","Ich bekomme eine Nachricht.","ฉันได้รับข้อความ"],
+["das Gespräch","น.","การสนทนา","conversation","Das Gespräch war gut.","การสนทนาดี"],
+["die Meinung","น.","ความเห็น","opinion","Meine Meinung ist anders.","ความเห็นฉันต่าง"],
+["die Information","น.","ข้อมูล","information","Ich brauche Informationen.","ฉันต้องการข้อมูล"],
+["der Vorschlag","น.","ข้อเสนอ","suggestion","Ein guter Vorschlag.","ข้อเสนอที่ดี"],
+["der Grund","น.","เหตุผล","reason","Der Grund ist klar.","เหตุผลชัดเจน"],
+["der Unterschied","น.","ความแตกต่าง","difference","Der Unterschied ist groß.","ความต่างมาก"],
+["die Möglichkeit","น.","ความเป็นไปได้","possibility","Es gibt eine Möglichkeit.","มีความเป็นไปได้"],
+["die Entscheidung","น.","การตัดสินใจ","decision","Die Entscheidung ist schwer.","การตัดสินใจยาก"],
+["die Gelegenheit","น.","โอกาส","opportunity","Eine gute Gelegenheit.","โอกาสที่ดี"],
+["der Zweck","น.","วัตถุประสงค์","purpose","Was ist der Zweck?","วัตถุประสงค์คืออะไร"],
+["das Ziel","น.","เป้าหมาย","goal","Ich habe ein Ziel.","ฉันมีเป้าหมาย"],
+["die Lösung","น.","ทางแก้","solution","Wir finden eine Lösung.","เราหาทางแก้ได้"],
+["das Ergebnis","น.","ผลลัพธ์","result","Das Ergebnis ist gut.","ผลลัพธ์ดี"],
+["die Bedeutung","น.","ความหมาย","meaning","Die Bedeutung ist unklar.","ความหมายไม่ชัด"],
+["die Wirkung","น.","ผลกระทบ","effect","Die Wirkung ist stark.","ผลกระทบรุนแรง"],
+["die Verspätung","น.","ความล่าช้า","delay","Der Zug hat Verspätung.","รถไฟล่าช้า"],
+["die Verbindung","น.","การเชื่อมต่อ/เที่ยว","connection","Die Verbindung ist gut.","การเดินทางสะดวก"],
+["der Ausflug","น.","ทัศนศึกษา","excursion","Wir machen einen Ausflug.","เราไปเที่ยว"],
+["die Umgebung","น.","สภาพแวดล้อม","surroundings","Die Umgebung ist ruhig.","สภาพแวดล้อมเงียบ"],
+["die Unterkunft","น.","ที่พัก","accommodation","Die Unterkunft ist sauber.","ที่พักสะอาด"],
+["die Grenze","น.","พรมแดน/ขีดจำกัด","border/limit","Die Grenze ist offen.","พรมแดนเปิด"],
+["der Aufenthalt","น.","การพำนัก","stay","Der Aufenthalt war kurz.","การพำนักสั้น"],
+["die Bildung","น.","การศึกษา","education","Bildung ist wichtig.","การศึกษาสำคัญ"],
+["die Prüfung","น.","การสอบ","exam","Die Prüfung ist schwer.","การสอบยาก"],
+["das Wissen","น.","ความรู้","knowledge","Wissen ist Macht.","ความรู้คือพลัง"],
+["die Kenntnis","น.","ความรู้/ทักษะ","knowledge/skill","Gute Deutschkenntnisse.","ความรู้ภาษาเยอรมันดี"],
+["die Fähigkeit","น.","ความสามารถ","ability","Eine wichtige Fähigkeit.","ทักษะสำคัญ"],
+["der Kurs","น.","คอร์ส","course","Ich besuche einen Kurs.","ฉันเรียนคอร์ส"],
+["das Niveau","น.","ระดับ","level","Mein Niveau ist B1.","ระดับฉันคือ B1"],
+["der Fortschritt","น.","ความก้าวหน้า","progress","Ich mache Fortschritte.","ฉันมีความก้าวหน้า"],
+["das Gefühl","น.","ความรู้สึก","feeling","Ein gutes Gefühl.","ความรู้สึกดี"],
+["die Angst","น.","ความกลัว","fear","Ich habe Angst.","ฉันกลัว"],
+["die Freude","น.","ความสุข","joy","Es ist eine Freude.","มันน่ายินดี"],
+["die Sorge","น.","ความกังวล","worry","Mach dir keine Sorgen.","ไม่ต้องกังวล"],
+["die Geduld","น.","ความอดทน","patience","Ich brauche Geduld.","ฉันต้องอดทน"],
+["der Stress","น.","ความเครียด","stress","Ich habe viel Stress.","ฉันเครียดมาก"],
+["höflich","คุณ.","สุภาพ","polite","Sei höflich.","จงสุภาพ"],
+["ehrlich","คุณ.","ซื่อสัตย์","honest","Er ist ehrlich.","เขาซื่อสัตย์"],
+["fleißig","คุณ.","ขยัน","diligent","Sie ist fleißig.","เธอขยัน"],
+["faul","คุณ.","ขี้เกียจ","lazy","Er ist faul.","เขาขี้เกียจ"],
+["geduldig","คุณ.","อดทน","patient","Sei geduldig.","จงอดทน"],
+["nervös","คุณ.","ประหม่า","nervous","Ich bin nervös.","ฉันประหม่า"],
+["selbstständig","คุณ.","พึ่งตัวเอง","independent","Sie arbeitet selbstständig.","เธอทำงานได้เอง"],
+["pünktlich","คุณ.","ตรงเวลา","punctual","Sei bitte pünktlich.","กรุณาตรงเวลา"],
+["zuverlässig","คุณ.","เชื่อถือได้","reliable","Er ist zuverlässig.","เขาน่าเชื่อถือ"],
+["freundlich","คุณ.","เป็นมิตร","friendly","Sie ist sehr freundlich.","เธอเป็นมิตรมาก"],
+["entscheiden","ก.","ตัดสินใจ","to decide","Ich muss mich entscheiden.","ฉันต้องตัดสินใจ"],
+["verbessern","ก.","ปรับปรุง","to improve","Ich verbessere mein Deutsch.","ฉันพัฒนาเยอรมัน"],
+["empfehlen","ก.","แนะนำ","to recommend","Ich empfehle das.","ฉันแนะนำสิ่งนี้"],
+["vereinbaren","ก.","นัด/ตกลง","to arrange","Wir vereinbaren einen Termin.","เรานัดหมาย"],
+["berücksichtigen","ก.","คำนึงถึง","to consider","Wir berücksichtigen das.","เราคำนึงถึงเรื่องนี้"],
+["sich kümmern","ก.","ดูแล","to take care","Ich kümmere mich darum.","ฉันจัดการเอง"],
+["beantragen","ก.","ยื่นขอ","to apply for","Ich beantrage Urlaub.","ฉันยื่นขอลา"],
+["erreichen","ก.","ติดต่อ/ไปถึง","to reach","Sie erreichen mich per Mail.","ติดต่อฉันทางเมล"],
+["mitteilen","ก.","แจ้ง","to inform","Ich teile es Ihnen mit.","ฉันจะแจ้งให้ทราบ"],
+["erledigen","ก.","สะสางให้เสร็จ","to deal with","Ich erledige das heute.","ฉันจะทำให้เสร็จวันนี้"],
+["beschweren","ก.","ร้องเรียน","to complain","Ich beschwere mich.","ฉันร้องเรียน"],
+["beschreiben","ก.","อธิบาย/บรรยาย","to describe","Beschreiben Sie das Problem.","อธิบายปัญหา"],
+["erklären","ก.","อธิบาย","to explain","Können Sie das erklären?","อธิบายได้ไหม"],
+["erlauben","ก.","อนุญาต","to allow","Das ist nicht erlaubt.","ไม่อนุญาต"],
+["verbieten","ก.","ห้าม","to forbid","Rauchen ist verboten.","ห้ามสูบบุหรี่"],
+["verlangen","ก.","เรียกร้อง","to demand","Was verlangen Sie?","คุณเรียกร้องอะไร"],
+["versuchen","ก.","พยายาม","to try","Ich versuche es.","ฉันจะลองดู"],
+["vermeiden","ก.","หลีกเลี่ยง","to avoid","Vermeiden Sie Fehler.","หลีกเลี่ยงข้อผิดพลาด"],
+["vergessen","ก.","ลืม","to forget","Ich habe es vergessen.","ฉันลืม"],
+["sich erinnern","ก.","จำได้/นึกออก","to remember","Ich erinnere mich daran.","ฉันจำเรื่องนั้นได้"],
+["sich freuen","ก.","ดีใจ","to be glad","Ich freue mich.","ฉันดีใจ"],
+["sich beeilen","ก.","รีบ","to hurry","Beeil dich!","รีบหน่อย"],
+["sich entschuldigen","ก.","ขอโทษ","to apologize","Ich entschuldige mich.","ฉันขอโทษ"],
+["sich vorstellen","ก.","แนะนำตัว/จินตนาการ","to introduce","Ich stelle mich vor.","ฉันแนะนำตัว"],
+["sich bewerben","ก.","สมัครงาน","to apply","Ich bewerbe mich.","ฉันสมัครงาน"],
+["teilnehmen","ก.","เข้าร่วม","to participate","Ich nehme teil.","ฉันเข้าร่วม"],
+["anbieten","ก.","เสนอ/มอบให้","to offer","Wir bieten Hilfe an.","เราเสนอความช่วยเหลือ"],
+["bestellen","ก.","สั่ง(ของ)","to order","Ich bestelle Essen.","ฉันสั่งอาหาร"],
+["buchen","ก.","จอง","to book","Ich buche ein Zimmer.","ฉันจองห้อง"],
+["mieten","ก.","เช่า","to rent","Ich miete eine Wohnung.","ฉันเช่าอพาร์ตเมนต์"],
+["verkaufen","ก.","ขาย","to sell","Ich verkaufe das Auto.","ฉันขายรถ"],
+["liefern","ก.","ส่งมอบ","to deliver","Wir liefern morgen.","เราส่งพรุ่งนี้"],
+["reparieren","ก.","ซ่อม","to repair","Ich repariere das Handy.","ฉันซ่อมมือถือ"],
+["funktionieren","ก.","ทำงาน(ได้)","to function","Es funktioniert nicht.","มันใช้ไม่ได้"],
+["benutzen","ก.","ใช้","to use","Ich benutze den Computer.","ฉันใช้คอมพิวเตอร์"],
+["wiederholen","ก.","ทำซ้ำ","to repeat","Bitte wiederholen Sie.","กรุณาพูดอีกครั้ง"],
+["übersetzen","ก.","แปล","to translate","Ich übersetze den Text.","ฉันแปลข้อความ"],
+["bedeuten","ก.","หมายความว่า","to mean","Was bedeutet das?","นี่หมายความว่าอะไร"],
+["passieren","ก.","เกิดขึ้น","to happen","Was ist passiert?","เกิดอะไรขึ้น"],
+["sich ändern","ก.","เปลี่ยนแปลง","to change","Die Zeiten ändern sich.","ยุคสมัยเปลี่ยนไป"],
+["entwickeln","ก.","พัฒนา","to develop","Wir entwickeln ein Produkt.","เราพัฒนาผลิตภัณฑ์"],
+["organisieren","ก.","จัดการ/จัดงาน","to organize","Ich organisiere das Fest.","ฉันจัดงาน"],
+["planen","ก.","วางแผน","to plan","Wir planen die Reise.","เราวางแผนเที่ยว"],
+["vorbereiten","ก.","เตรียม","to prepare","Ich bereite mich vor.","ฉันเตรียมตัว"],
+["kontrollieren","ก.","ตรวจสอบ","to check","Bitte kontrollieren Sie das.","กรุณาตรวจสอบ"],
+["unterstützen","ก.","สนับสนุน","to support","Ich unterstütze dich.","ฉันสนับสนุนเธอ"],
+["verlieren","ก.","เสีย/แพ้","to lose","Ich verliere die Geduld.","ฉันหมดความอดทน"],
+["gewinnen","ก.","ชนะ/ได้มา","to win","Wir gewinnen Zeit.","เราได้เวลาเพิ่ม"],
+["erlernen","ก.","เรียนรู้(จนเชี่ยว)","to acquire","Ich erlerne einen Beruf.","ฉันเรียนรู้อาชีพ"],
+["erkennen","ก.","รับรู้/จำได้","to recognize","Ich erkenne ihn.","ฉันจำเขาได้"],
+["beachten","ก.","ใส่ใจ/ปฏิบัติตาม","to observe","Beachten Sie die Regeln.","ปฏิบัติตามกฎ"],
+["beweisen","ก.","พิสูจน์","to prove","Ich kann es beweisen.","ฉันพิสูจน์ได้"],
+["überlegen","ก.","ไตร่ตรอง","to consider","Ich überlege es mir.","ฉันจะคิดดู"],
+["beobachten","ก.","สังเกต","to observe","Ich beobachte die Lage.","ฉันสังเกตสถานการณ์"],
+["trotzdem","คุณ.","ถึงกระนั้น","nevertheless","Es regnet, trotzdem gehe ich.","ฝนตกแต่ฉันก็ไป"],
+["deshalb","คุณ.","ดังนั้น","therefore","Ich bin krank, deshalb bleibe ich.","ฉันป่วยเลยอยู่บ้าน"],
+["außerdem","คุณ.","นอกจากนี้","besides","Außerdem ist es teuer.","นอกจากนี้ยังแพง"],
+["obwohl","คุณ.","แม้ว่า","although","Obwohl es regnet, gehe ich.","แม้ฝนตกฉันก็ไป"],
+["damit","คุณ.","เพื่อที่","so that","Ich lerne, damit ich bestehe.","ฉันเรียนเพื่อจะสอบผ่าน"],
+["während","คุณ.","ระหว่าง/ขณะที่","while","Während er schläft, koche ich.","ขณะเขานอนฉันทำอาหาร"],
+["sobald","คุณ.","ทันทีที่","as soon as","Sobald ich kann, komme ich.","ทันทีที่ได้ฉันจะมา"],
+["falls","คุณ.","ในกรณีที่","in case","Falls es regnet, bleib zu Hause.","ถ้าฝนตกให้อยู่บ้าน"],
+["zuerst","คุณ.","อย่างแรก","first","Zuerst frühstücke ich.","ก่อนอื่นฉันกินข้าวเช้า"],
+["danach","คุณ.","หลังจากนั้น","afterwards","Danach gehe ich arbeiten.","จากนั้นฉันไปทำงาน"],
+["schließlich","คุณ.","ในที่สุด","finally","Schließlich kam er.","ในที่สุดเขาก็มา"],
+["plötzlich","คุณ.","ทันใดนั้น","suddenly","Plötzlich regnete es.","ทันใดนั้นฝนก็ตก"],
+["ungefähr","คุณ.","ประมาณ","approximately","Ungefähr zehn Leute.","ประมาณสิบคน"],
+["mindestens","คุณ.","อย่างน้อย","at least","Mindestens eine Stunde.","อย่างน้อยหนึ่งชั่วโมง"],
+["höchstens","คุณ.","อย่างมาก","at most","Höchstens zwei Tage.","อย่างมากสองวัน"],
+["wahrscheinlich","คุณ.","น่าจะ","probably","Es regnet wahrscheinlich.","ฝนน่าจะตก"],
+["vielleicht","คุณ.","บางที","maybe","Vielleicht komme ich.","บางทีฉันอาจมา"],
+["sicher","คุณ.","แน่นอน/ปลอดภัย","sure/safe","Bist du sicher?","แน่ใจไหม"],
+["genug","คุณ.","พอ","enough","Das ist genug.","พอแล้ว"],
+["besonders","คุณ.","เป็นพิเศษ","especially","Das ist besonders wichtig.","สำคัญเป็นพิเศษ"],
+["notwendig","คุณ.","จำเป็น","necessary","Das ist notwendig.","นั่นจำเป็น"],
+["möglich","คุณ.","เป็นไปได้","possible","Ist das möglich?","เป็นไปได้ไหม"],
+["nötig","คุณ.","จำเป็น","needed","Es ist nicht nötig.","ไม่จำเป็น"],
+["geeignet","คุณ.","เหมาะสม","suitable","Das ist geeignet.","นั่นเหมาะสม"],
+["ähnlich","คุณ.","คล้ายกัน","similar","Sie sind ähnlich.","พวกมันคล้ายกัน"],
+["verschieden","คุณ.","แตกต่าง","different","Sie sind verschieden.","พวกมันต่างกัน"],
+["zufrieden","คุณ.","พอใจ","satisfied","Ich bin zufrieden.","ฉันพอใจ"],
+["erfolgreich","คุณ.","ประสบความสำเร็จ","successful","Das Projekt ist erfolgreich.","โครงการสำเร็จ"],
+["günstig","คุณ.","ราคาดี/เอื้อ","favourable","Ein günstiger Preis.","ราคาดี"],
+["modern","คุณ.","ทันสมัย","modern","Ein modernes Büro.","ออฟฟิศทันสมัย"],
+["normal","คุณ.","ปกติ","normal","Das ist normal.","นั่นปกติ"],
+["nützlich","คุณ.","มีประโยชน์","useful","Das ist sehr nützlich.","มีประโยชน์มาก"],
+["dringend","คุณ.","เร่งด่วน","urgent","Es ist dringend.","มันเร่งด่วน"],
+["kompliziert","คุณ.","ซับซ้อน","complicated","Das ist kompliziert.","ซับซ้อน"],
+["deutlich","คุณ.","ชัดเจน","clear","Sprechen Sie deutlich.","พูดให้ชัด"],
+["selten","คุณ.","นานๆ ครั้ง","rare","Das passiert selten.","เกิดขึ้นนานๆ ครั้ง"],
+["häufig","คุณ.","บ่อย","frequent","Das passiert häufig.","เกิดขึ้นบ่อย"],
+["aktuell","คุณ.","ปัจจุบัน/ล่าสุด","current","Die aktuelle Lage.","สถานการณ์ปัจจุบัน"],
+["zusätzlich","คุณ.","เพิ่มเติม","additional","Zusätzliche Kosten.","ค่าใช้จ่ายเพิ่มเติม"],
+["gemeinsam","คุณ.","ร่วมกัน","joint/together","Ein gemeinsames Ziel.","เป้าหมายร่วมกัน"],
+["die Regel","น.","กฎ","rule","Das ist die Regel.","นั่นคือกฎ"],
+["die Ordnung","น.","ความเป็นระเบียบ","order","Alles in Ordnung.","ทุกอย่างเรียบร้อย"],
+["der Fehler","น.","ข้อผิดพลาด","mistake","Das ist mein Fehler.","นั่นความผิดฉัน"],
+["der Vorteil","น.","ข้อดี","advantage","Das hat einen Vorteil.","อันนี้มีข้อดี"],
+["der Nachteil","น.","ข้อเสีย","disadvantage","Das ist ein Nachteil.","อันนี้เป็นข้อเสีย"],
+["die Wahrheit","น.","ความจริง","truth","Sag die Wahrheit.","พูดความจริง"],
+["der Wunsch","น.","ความปรารถนา","wish","Ein letzter Wunsch.","ความปรารถนาสุดท้าย"],
+["der Zustand","น.","สภาพ","condition","Der Zustand ist gut.","สภาพดี"],
+["der Eindruck","น.","ความประทับใจ","impression","Ein guter Eindruck.","ความประทับใจที่ดี"],
+["die Mühe","น.","ความพยายาม","effort","Es ist die Mühe wert.","มันคุ้มค่ากับความพยายาม"],
+["der Versuch","น.","ความพยายาม/การทดลอง","attempt","Ein letzter Versuch.","ความพยายามสุดท้าย"],
+["die Bedingung","น.","เงื่อนไข","condition","Unter einer Bedingung.","โดยมีเงื่อนไขหนึ่ง"],
+["der Einfluss","น.","อิทธิพล","influence","Er hat Einfluss.","เขามีอิทธิพล"],
+["die Hilfe","น.","ความช่วยเหลือ","help","Vielen Dank für die Hilfe.","ขอบคุณที่ช่วย"],
+["der Rat","น.","คำแนะนำ","advice","Ich brauche deinen Rat.","ฉันต้องการคำแนะนำ"],
+["der Zweifel","น.","ความสงสัย","doubt","Ich habe Zweifel.","ฉันมีข้อสงสัย"],
+["die Absicht","น.","ความตั้งใจ","intention","Das war keine Absicht.","ไม่ได้ตั้งใจ"],
+["die Vorschrift","น.","ข้อบังคับ","regulation","Das ist Vorschrift.","นั่นคือข้อบังคับ"],
+["das Verhalten","น.","พฤติกรรม","behaviour","Sein Verhalten ist seltsam.","พฤติกรรมเขาแปลก"],
+["der Bereich","น.","ขอบเขต/สาขา","area","In diesem Bereich.","ในสาขานี้"],
+["der Handwerker","น.","ช่างฝีมือ","craftsman","Der Handwerker kommt heute.","ช่างมาวันนี้"],
+["die Pflegekraft","น.","ผู้ช่วยพยาบาล","care worker","Sie ist Pflegekraft.","เธอเป็นผู้ช่วยพยาบาล"],
+["die Krankenschwester","น.","พยาบาล","nurse","Die Krankenschwester hilft.","พยาบาลช่วยเหลือ"],
+["der Ingenieur","น.","วิศวกร","engineer","Er ist Ingenieur.","เขาเป็นวิศวกร"],
+["der Verkäufer","น.","พนักงานขาย","salesperson","Der Verkäufer ist nett.","พนักงานขายใจดี"],
+["der Koch","น.","พ่อครัว","cook","Der Koch ist gut.","พ่อครัวฝีมือดี"],
+["der Fahrer","น.","คนขับ","driver","Der Fahrer wartet.","คนขับรออยู่"],
+["die Reinigungskraft","น.","แม่บ้านทำความสะอาด","cleaner","Die Reinigungskraft kommt.","แม่บ้านมา"],
+["der Praktikant","น.","นักศึกษาฝึกงาน","intern","Der Praktikant lernt.","นักศึกษาฝึกงานกำลังเรียนรู้"],
+["die Leitung","น.","ฝ่ายบริหาร/สายงาน","management","Die Leitung entscheidet.","ฝ่ายบริหารตัดสินใจ"],
+["die Sicherheit","น.","ความปลอดภัย","safety","Sicherheit ist wichtig.","ความปลอดภัยสำคัญ"],
+["die Qualität","น.","คุณภาพ","quality","Die Qualität ist hoch.","คุณภาพสูง"],
+["die Menge","น.","ปริมาณ","quantity","Eine große Menge.","ปริมาณมาก"],
+["die Leistung","น.","ผลงาน/สมรรถนะ","performance","Eine gute Leistung.","ผลงานดี"],
+["der Auftrag","น.","คำสั่งงาน/ออเดอร์","order/assignment","Ich habe einen Auftrag.","ฉันมีงานที่ได้รับมอบหมาย"],
+["die Lieferung","น.","การจัดส่ง","delivery","Die Lieferung ist da.","ของส่งมาถึงแล้ว"],
+["das Lager","น.","คลังสินค้า","warehouse","Das Lager ist voll.","คลังเต็ม"],
+["die Maschine","น.","เครื่องจักร","machine","Die Maschine läuft.","เครื่องจักรทำงาน"],
+["das Werkzeug","น.","เครื่องมือ","tool","Das Werkzeug ist alt.","เครื่องมือเก่า"],
+["der Arbeitsplatz","น.","ที่ทำงาน/ตำแหน่ง","workplace","Mein Arbeitsplatz ist sauber.","ที่ทำงานฉันสะอาด"],
+["der Haushalt","น.","งานบ้าน/ครัวเรือน","household","Ich mache den Haushalt.","ฉันทำงานบ้าน"],
+["die Nachbarschaft","น.","ละแวกบ้าน","neighbourhood","Eine ruhige Nachbarschaft.","ละแวกเงียบสงบ"],
+["der Müll","น.","ขยะ","garbage","Ich bringe den Müll raus.","ฉันเอาขยะไปทิ้ง"],
+["die Steckdose","น.","ปลั๊กไฟ","socket","Die Steckdose ist kaputt.","ปลั๊กเสีย"],
+["die Heizung","น.","เครื่องทำความร้อน","heating","Die Heizung funktioniert nicht.","ฮีตเตอร์เสีย"],
+["der Strom","น.","ไฟฟ้า","electricity","Der Strom ist weg.","ไฟดับ"],
+["die Reparatur","น.","การซ่อม","repair","Die Reparatur ist teuer.","ค่าซ่อมแพง"],
+["der Termin absagen","ก.","ยกเลิกนัด","cancel appt.","Ich muss den Termin absagen.","ฉันต้องยกเลิกนัด"],
+["ablehnen","ก.","ปฏิเสธ","to reject","Ich lehne das ab.","ฉันปฏิเสธ"],
+["zustimmen","ก.","เห็นด้วย","to agree","Ich stimme zu.","ฉันเห็นด้วย"],
+["sich melden","ก.","ติดต่อกลับ","to get in touch","Ich melde mich bald.","ฉันจะติดต่อกลับเร็วๆ นี้"],
+["sich gewöhnen","ก.","เคยชิน","to get used to","Ich gewöhne mich daran.","ฉันเริ่มชินกับมัน"],
+["sich bedanken","ก.","ขอบคุณ","to thank","Ich bedanke mich.","ฉันขอขอบคุณ"],
+["sich interessieren","ก.","สนใจ","to be interested","Ich interessiere mich dafür.","ฉันสนใจเรื่องนี้"],
+["sich beschweren","ก.","ร้องเรียน","to complain","Er beschwert sich oft.","เขาร้องเรียนบ่อย"],
+["verschieben","ก.","เลื่อน(เวลา)","to postpone","Wir verschieben den Termin.","เราเลื่อนนัด"],
+["verlängern","ก.","ต่ออายุ/ขยายเวลา","to extend","Ich verlängere das Visum.","ฉันต่อวีซ่า"],
+["kündigen","ก.","ลาออก/บอกเลิก","to quit/cancel","Ich kündige den Vertrag.","ฉันยกเลิกสัญญา"],
+["unterschreiben","ก.","เซ็นชื่อ","to sign","Bitte hier unterschreiben.","กรุณาเซ็นตรงนี้"],
+["ausfüllen","ก.","กรอก(แบบฟอร์ม)","to fill in","Füllen Sie das aus.","กรอกอันนี้"],
+["abgeben","ก.","ยื่น/ส่ง","to hand in","Ich gebe den Antrag ab.","ฉันยื่นคำร้อง"],
+["überprüfen","ก.","ตรวจสอบ","to verify","Ich überprüfe das.","ฉันตรวจสอบ"],
+["mitbringen","ก.","พามา/นำมา","to bring along","Bring deinen Ausweis mit.","เอาบัตรมาด้วย"],
+["aufpassen","ก.","ระวัง/ดูแล","to watch out","Pass auf!","ระวัง"],
+["sich konzentrieren","ก.","มีสมาธิ","to concentrate","Ich konzentriere mich.","ฉันมีสมาธิ"],
+["sich entscheiden","ก.","ตัดสินใจ","to decide","Ich entscheide mich dafür.","ฉันเลือกอันนี้"],
+["zusammenarbeiten","ก.","ทำงานร่วมกัน","to cooperate","Wir arbeiten zusammen.","เราทำงานด้วยกัน"],
+["einladen","ก.","เชิญ","to invite","Ich lade dich ein.","ฉันเชิญเธอ"],
+["abholen","ก.","ไปรับ","to pick up","Ich hole dich ab.","ฉันจะไปรับเธอ"],
+["umziehen","ก.","ย้ายบ้าน","to move house","Wir ziehen um.","เราย้ายบ้าน"],
+["sich anmelden","ก.","ลงทะเบียน","to register","Ich melde mich an.","ฉันลงทะเบียน"],
+["sich befinden","ก.","ตั้งอยู่","to be located","Das Büro befindet sich hier.","ออฟฟิศตั้งอยู่ตรงนี้"],
+["beenden","ก.","ทำให้จบ","to finish","Ich beende die Arbeit.","ฉันทำงานให้เสร็จ"],
+["erhalten","ก.","ได้รับ","to receive","Ich habe den Brief erhalten.","ฉันได้รับจดหมาย"],
+["bemerken","ก.","สังเกตเห็น","to notice","Ich bemerke einen Fehler.","ฉันเห็นข้อผิดพลาด"],
+["sich verlassen","ก.","พึ่งพา","to rely on","Ich verlasse mich auf dich.","ฉันพึ่งเธอ"],
+["bedienen","ก.","ให้บริการ/ใช้งาน","to serve/operate","Ich bediene die Maschine.","ฉันใช้งานเครื่อง"],
+["leihen","ก.","ยืม/ให้ยืม","to lend/borrow","Kannst du mir Geld leihen?","ให้ฉันยืมเงินได้ไหม"],
+["beruflich","คุณ.","ทางอาชีพ","professional","Aus beruflichen Gründen.","ด้วยเหตุผลทางงาน"],
+["privat","คุณ.","ส่วนตัว","private","Das ist privat.","นั่นเรื่องส่วนตัว"],
+["gültig","คุณ.","มีผล/ใช้ได้","valid","Der Pass ist gültig.","พาสปอร์ตใช้ได้"],
+["kostenlos","คุณ.","ฟรี","free of charge","Der Eintritt ist kostenlos.","เข้าฟรี"],
+["verfügbar","คุณ.","มีให้ใช้","available","Das Zimmer ist verfügbar.","ห้องว่างอยู่"],
+["geöffnet","คุณ.","เปิด(ทำการ)","open","Das Amt ist geöffnet.","สำนักงานเปิด"],
+["geschlossen","คุณ.","ปิด","closed","Heute geschlossen.","วันนี้ปิด"],
+["bereit","คุณ.","พร้อม","ready","Ich bin bereit.","ฉันพร้อม"],
+["vorsichtig","คุณ.","ระมัดระวัง","careful","Sei vorsichtig.","ระวังตัวด้วย"],
+["unbedingt","คุณ.","ต้อง...ให้ได้","absolutely","Das musst du unbedingt sehen.","เธอต้องดูให้ได้"],
+["damals","คุณ.","ในตอนนั้น","back then","Damals war ich jung.","ตอนนั้นฉันยังเด็ก"],
+["inzwischen","คุณ.","ในระหว่างนั้น","meanwhile","Inzwischen ist es spät.","ตอนนี้ก็ดึกแล้ว"],
+["normalerweise","คุณ.","ปกติแล้ว","usually","Normalerweise arbeite ich.","ปกติฉันทำงาน"],
+["eigentlich","คุณ.","ที่จริงแล้ว","actually","Eigentlich habe ich Zeit.","จริงๆ ฉันมีเวลา"]
+],
+schwer:[
+["die Nachhaltigkeit","น.","ความยั่งยืน","sustainability","Nachhaltigkeit ist zentral.","ความยั่งยืนเป็นหัวใจ"],
+["die Voraussetzung","น.","เงื่อนไข/ข้อกำหนด","prerequisite","Erfahrung ist Voraussetzung.","ประสบการณ์เป็นข้อกำหนด"],
+["die Auseinandersetzung","น.","การโต้แย้ง/การถกเถียง","dispute","Eine harte Auseinandersetzung.","การถกเถียงที่ดุเดือด"],
+["die Herausforderung","น.","ความท้าทาย","challenge","Eine große Herausforderung.","ความท้าทายใหญ่"],
+["die Zuständigkeit","น.","ขอบเขตหน้าที่","jurisdiction","Das fällt in meine Zuständigkeit.","นั่นอยู่ในหน้าที่ฉัน"],
+["die Beeinträchtigung","น.","การลดทอน/อุปสรรค","impairment","ohne Beeinträchtigung","โดยไม่มีอุปสรรค"],
+["die Rahmenbedingung","น.","เงื่อนไขกรอบ","framework condition","Die Rahmenbedingungen ändern sich.","เงื่อนไขกรอบเปลี่ยน"],
+["die Wirtschaftlichkeit","น.","ความคุ้มค่า","cost-efficiency","Die Wirtschaftlichkeit zählt.","ความคุ้มค่าสำคัญ"],
+["die Geschäftsführung","น.","ฝ่ายบริหาร","management","Die Geschäftsführung tagt.","ฝ่ายบริหารประชุม"],
+["die Schlussfolgerung","น.","ข้อสรุป","conclusion","Eine logische Schlussfolgerung.","ข้อสรุปที่สมเหตุสมผล"],
+["die Vereinbarung","น.","ข้อตกลง","agreement","Eine schriftliche Vereinbarung.","ข้อตกลงเป็นลายลักษณ์อักษร"],
+["die Maßnahme","น.","มาตรการ","measure","Wir ergreifen Maßnahmen.","เราใช้มาตรการ"],
+["die Befähigung","น.","คุณสมบัติ","qualification","die nötige Befähigung","คุณสมบัติที่จำเป็น"],
+["die Entwicklung","น.","การพัฒนา/แนวโน้ม","development","eine positive Entwicklung","แนวโน้มที่ดี"],
+["die Bedingung","น.","เงื่อนไข","condition","unter bestimmten Bedingungen","ภายใต้เงื่อนไขบางอย่าง"],
+["die Verpflichtung","น.","พันธะ/ภาระผูกพัน","obligation","eine vertragliche Verpflichtung","ภาระผูกพันตามสัญญา"],
+["die Genauigkeit","น.","ความแม่นยำ","accuracy","mit großer Genauigkeit","ด้วยความแม่นยำสูง"],
+["die Zuverlässigkeit","น.","ความน่าเชื่อถือ","reliability","Zuverlässigkeit ist entscheidend.","ความน่าเชื่อถือสำคัญยิ่ง"],
+["die Geschwindigkeit","น.","ความเร็ว","speed","mit hoher Geschwindigkeit","ด้วยความเร็วสูง"],
+["die Gerechtigkeit","น.","ความยุติธรรม","justice","ein Streben nach Gerechtigkeit","การแสวงหาความยุติธรรม"],
+["die Sicherheit","น.","ความมั่นคง/ปลอดภัย","security","soziale Sicherheit","ความมั่นคงทางสังคม"],
+["die Unabhängigkeit","น.","ความเป็นอิสระ","independence","wirtschaftliche Unabhängigkeit","ความเป็นอิสระทางเศรษฐกิจ"],
+["die Verfügbarkeit","น.","ความพร้อมใช้","availability","die Verfügbarkeit prüfen","ตรวจสอบความพร้อมใช้"],
+["die Wahrscheinlichkeit","น.","ความน่าจะเป็น","probability","eine hohe Wahrscheinlichkeit","ความน่าจะเป็นสูง"],
+["die Notwendigkeit","น.","ความจำเป็น","necessity","die Notwendigkeit erkennen","ตระหนักถึงความจำเป็น"],
+["die Vielfalt","น.","ความหลากหลาย","diversity","kulturelle Vielfalt","ความหลากหลายทางวัฒนธรรม"],
+["die Gleichberechtigung","น.","ความเท่าเทียม","equality","Gleichberechtigung am Arbeitsplatz","ความเท่าเทียมในที่ทำงาน"],
+["die Zusammenarbeit","น.","ความร่วมมือ","cooperation","eine enge Zusammenarbeit","ความร่วมมืออย่างใกล้ชิด"],
+["die Verbreitung","น.","การแพร่กระจาย","spread","die Verbreitung von Information","การกระจายข้อมูล"],
+["die Voraussage","น.","การพยากรณ์","prediction","eine genaue Voraussage","การพยากรณ์ที่แม่นยำ"],
+["der Zusammenhang","น.","ความเชื่อมโยง/บริบท","context","in diesem Zusammenhang","ในบริบทนี้"],
+["der Fortschritt","น.","ความก้าวหน้า","progress","technischer Fortschritt","ความก้าวหน้าทางเทคนิค"],
+["der Wettbewerb","น.","การแข่งขัน","competition","ein harter Wettbewerb","การแข่งขันที่ดุเดือด"],
+["der Wohlstand","น.","ความมั่งคั่ง","prosperity","wachsender Wohlstand","ความมั่งคั่งที่เพิ่มขึ้น"],
+["die Wirtschaft","น.","เศรษฐกิจ","economy","Die Wirtschaft wächst.","เศรษฐกิจเติบโต"],
+["die Gesellschaft","น.","สังคม","society","eine offene Gesellschaft","สังคมเปิด"],
+["die Bevölkerung","น.","ประชากร","population","die alternde Bevölkerung","ประชากรสูงวัย"],
+["die Regierung","น.","รัฐบาล","government","Die Regierung entscheidet.","รัฐบาลตัดสินใจ"],
+["die Gesetzgebung","น.","การออกกฎหมาย","legislation","eine neue Gesetzgebung","กฎหมายใหม่"],
+["der Arbeitsmarkt","น.","ตลาดแรงงาน","labour market","der angespannte Arbeitsmarkt","ตลาดแรงงานตึงตัว"],
+["der Fachkräftemangel","น.","การขาดแคลนแรงงานฝีมือ","skills shortage","Der Fachkräftemangel wächst.","การขาดแคลนแรงงานเพิ่มขึ้น"],
+["die Globalisierung","น.","โลกาภิวัตน์","globalization","die Folgen der Globalisierung","ผลของโลกาภิวัตน์"],
+["die Digitalisierung","น.","การเปลี่ยนเป็นดิจิทัล","digitalization","Die Digitalisierung verändert alles.","ดิจิทัลเปลี่ยนทุกอย่าง"],
+["der Klimawandel","น.","การเปลี่ยนแปลงสภาพภูมิอากาศ","climate change","Der Klimawandel ist real.","ภาวะโลกร้อนเป็นเรื่องจริง"],
+["die Umwelt","น.","สิ่งแวดล้อม","environment","die Umwelt schützen","ปกป้องสิ่งแวดล้อม"],
+["die Einwanderung","น.","การเข้าเมือง","immigration","die Einwanderung erleichtern","ทำให้การเข้าเมืองง่ายขึ้น"],
+["die Integration","น.","การหลอมรวม","integration","Integration braucht Zeit.","การหลอมรวมต้องใช้เวลา"],
+["die Anforderung","น.","ข้อกำหนด/ความต้องการ","requirement","hohe Anforderungen","ข้อกำหนดที่สูง"],
+["die Folge","น.","ผลที่ตามมา","consequence","schwerwiegende Folgen","ผลที่ร้ายแรง"],
+["die Ursache","น.","สาเหตุ","cause","die Ursache des Problems","สาเหตุของปัญหา"],
+["der Aspekt","น.","แง่มุม","aspect","ein wichtiger Aspekt","แง่มุมสำคัญ"],
+["die Tendenz","น.","แนวโน้ม","tendency","eine steigende Tendenz","แนวโน้มเพิ่มขึ้น"],
+["der Anteil","น.","สัดส่วน","proportion","ein großer Anteil","สัดส่วนที่มาก"],
+["der Überblick","น.","ภาพรวม","overview","einen Überblick geben","ให้ภาพรวม"],
+["die Perspektive","น.","มุมมอง","perspective","aus meiner Perspektive","จากมุมมองของฉัน"],
+["der Standpunkt","น.","จุดยืน","standpoint","Ich vertrete den Standpunkt.","ฉันยึดจุดยืนนี้"],
+["die Begründung","น.","การให้เหตุผล","justification","eine schlüssige Begründung","เหตุผลที่หนักแน่น"],
+["die Auswirkung","น.","ผลกระทบ","impact","negative Auswirkungen","ผลกระทบด้านลบ"],
+["der Beitrag","น.","ส่วนร่วม/บทความ","contribution","einen Beitrag leisten","มีส่วนร่วม"],
+["die Vorgabe","น.","ข้อกำหนด/แนวทาง","guideline","gesetzliche Vorgaben","ข้อกำหนดทางกฎหมาย"],
+["die Strategie","น.","กลยุทธ์","strategy","eine langfristige Strategie","กลยุทธ์ระยะยาว"],
+["die Effizienz","น.","ประสิทธิภาพ","efficiency","die Effizienz steigern","เพิ่มประสิทธิภาพ"],
+["die Investition","น.","การลงทุน","investment","eine sinnvolle Investition","การลงทุนที่คุ้มค่า"],
+["der Umsatz","น.","ยอดขาย","turnover","Der Umsatz steigt.","ยอดขายเพิ่ม"],
+["der Gewinn","น.","กำไร","profit","einen Gewinn erzielen","ทำกำไร"],
+["der Verlust","น.","การขาดทุน","loss","einen Verlust vermeiden","เลี่ยงการขาดทุน"],
+["die Verhandlung","น.","การเจรจา","negotiation","schwierige Verhandlungen","การเจรจาที่ยาก"],
+["die Vereinbarung treffen","ก.","ทำข้อตกลง","reach agreement","Wir treffen eine Vereinbarung.","เราทำข้อตกลง"],
+["die Zielgruppe","น.","กลุ่มเป้าหมาย","target group","die richtige Zielgruppe","กลุ่มเป้าหมายที่ถูกต้อง"],
+["der Verantwortungsbereich","น.","ขอบเขตความรับผิดชอบ","area of responsibility","mein Verantwortungsbereich","ขอบเขตความรับผิดชอบของฉัน"],
+["die Schnittstelle","น.","จุดเชื่อมต่อ","interface","eine wichtige Schnittstelle","จุดเชื่อมต่อสำคัญ"],
+["die Vorgehensweise","น.","วิธีดำเนินการ","procedure","eine klare Vorgehensweise","ขั้นตอนที่ชัดเจน"],
+["der Sachverhalt","น.","ข้อเท็จจริง/รายละเอียด","facts of the matter","den Sachverhalt klären","ทำให้ข้อเท็จจริงกระจ่าง"],
+["die Verbindlichkeit","น.","ความผูกพัน/หนี้สิน","commitment","mit Verbindlichkeit zusagen","ตอบรับอย่างมีพันธะ"],
+["die Abstimmung","น.","การประสานงาน/ลงคะแนน","coordination/vote","nach Abstimmung mit dem Team","หลังประสานกับทีม"],
+["der Ablauf","น.","ขั้นตอน/ลำดับ","process flow","der Ablauf ist festgelegt","ขั้นตอนถูกกำหนดไว้"],
+["die Übersicht","น.","ภาพรวม/สรุป","summary view","eine Übersicht erstellen","จัดทำสรุปภาพรวม"],
+["die Rücksprache","น.","การหารือ","consultation","nach Rücksprache","หลังหารือ"],
+["der Nachweis","น.","หลักฐาน","proof","einen Nachweis erbringen","แสดงหลักฐาน"],
+["die Voraussetzungen erfüllen","ก.","มีคุณสมบัติครบ","meet requirements","Ich erfülle die Voraussetzungen.","ฉันมีคุณสมบัติครบ"],
+["gewährleisten","ก.","รับประกัน","to ensure","Wir gewährleisten Qualität.","เรารับประกันคุณภาพ"],
+["bewältigen","ก.","รับมือ/จัดการ","to cope with","Sie bewältigt die Krise.","เธอรับมือวิกฤต"],
+["nachvollziehen","ก.","เข้าใจเหตุผล","to comprehend","Ich kann das nachvollziehen.","ฉันเข้าใจเหตุผลนั้น"],
+["beanspruchen","ก.","ใช้/เรียกร้อง","to claim","Das beansprucht Zeit.","สิ่งนั้นใช้เวลา"],
+["beeinflussen","ก.","มีอิทธิพลต่อ","to influence","Das beeinflusst die Entscheidung.","สิ่งนั้นมีผลต่อการตัดสินใจ"],
+["berücksichtigen","ก.","คำนึงถึง","to take into account","Wir berücksichtigen alle Faktoren.","เราคำนึงถึงทุกปัจจัย"],
+["verdeutlichen","ก.","ทำให้ชัดเจน","to clarify","Ich verdeutliche meinen Punkt.","ฉันอธิบายประเด็นให้ชัด"],
+["voraussetzen","ก.","ถือเป็นข้อกำหนด","to presuppose","Das setzt Erfahrung voraus.","สิ่งนี้ต้องอาศัยประสบการณ์"],
+["umsetzen","ก.","นำไปปฏิบัติ","to implement","Wir setzen den Plan um.","เรานำแผนไปปฏิบัติ"],
+["durchführen","ก.","ดำเนินการ","to carry out","Wir führen eine Studie durch.","เราดำเนินการศึกษา"],
+["ermöglichen","ก.","ทำให้เป็นไปได้","to enable","Das ermöglicht Wachstum.","สิ่งนี้ทำให้เติบโตได้"],
+["erfordern","ก.","ต้องการ/เรียกร้อง","to require","Das erfordert Geduld.","สิ่งนี้ต้องใช้ความอดทน"],
+["verzichten","ก.","สละ/งดเว้น","to do without","Ich verzichte darauf.","ฉันขอสละสิ่งนั้น"],
+["betonen","ก.","เน้นย้ำ","to emphasize","Ich möchte betonen, dass …","ฉันอยากเน้นว่า…"],
+["beitragen","ก.","มีส่วนช่วย","to contribute","Das trägt dazu bei.","สิ่งนี้มีส่วนช่วย"],
+["bestehen aus","ก.","ประกอบด้วย","to consist of","Das Team besteht aus fünf Personen.","ทีมมีห้าคน"],
+["beruhen auf","ก.","ตั้งอยู่บนพื้นฐาน","to be based on","Das beruht auf Daten.","สิ่งนี้อิงข้อมูล"],
+["verfügen über","ก.","มี(ครอบครอง)","to have at disposal","Sie verfügt über Erfahrung.","เธอมีประสบการณ์"],
+["sich auseinandersetzen","ก.","พิจารณาอย่างลึกซึ้ง","to engage with","Ich setze mich damit auseinander.","ฉันพิจารณาเรื่องนี้อย่างจริงจัง"],
+["sich beziehen auf","ก.","อ้างถึง","to refer to","Ich beziehe mich auf Ihr Schreiben.","ฉันอ้างถึงจดหมายของคุณ"],
+["sich herausstellen","ก.","ปรากฏว่า","to turn out","Es stellt sich heraus, dass …","ปรากฏว่า…"],
+["zunehmen","ก.","เพิ่มขึ้น","to increase","Die Nachfrage nimmt zu.","ความต้องการเพิ่มขึ้น"],
+["abnehmen","ก.","ลดลง","to decrease","Die Zahl nimmt ab.","ตัวเลขลดลง"],
+["überwinden","ก.","เอาชนะ","to overcome","Hindernisse überwinden","เอาชนะอุปสรรค"],
+["ergänzen","ก.","เสริม/เติม","to supplement","Ich ergänze die Liste.","ฉันเติมรายการ"],
+["abwägen","ก.","ชั่งน้ำหนัก/พิจารณา","to weigh up","Vor- und Nachteile abwägen","ชั่งน้ำหนักข้อดีข้อเสีย"],
+["festlegen","ก.","กำหนด","to determine","Wir legen das Datum fest.","เรากำหนดวันที่"],
+["gewichten","ก.","ให้น้ำหนัก","to weight","verschiedene Faktoren gewichten","ให้น้ำหนักปัจจัยต่างๆ"],
+["hervorheben","ก.","เน้นให้เด่น","to highlight","Ich möchte hervorheben, dass …","ฉันอยากเน้นว่า…"],
+["belegen","ก.","พิสูจน์ด้วยหลักฐาน","to substantiate","Studien belegen das.","งานวิจัยยืนยันเรื่องนี้"],
+["entgegenkommen","ก.","ผ่อนปรน/ยอมให้","to accommodate","Wir kommen Ihnen entgegen.","เรายินดีผ่อนปรนให้คุณ"],
+["vorantreiben","ก.","ผลักดัน","to push forward","ein Projekt vorantreiben","ผลักดันโครงการ"],
+["scheitern","ก.","ล้มเหลว","to fail","Der Plan ist gescheitert.","แผนล้มเหลว"],
+["bewirken","ก.","ก่อให้เกิดผล","to bring about","Das bewirkt eine Änderung.","สิ่งนี้ทำให้เกิดการเปลี่ยนแปลง"],
+["abhängen von","ก.","ขึ้นอยู่กับ","to depend on","Das hängt vom Budget ab.","ขึ้นอยู่กับงบประมาณ"],
+["sich auswirken","ก.","ส่งผล","to have an effect","Das wirkt sich aus.","สิ่งนี้ส่งผล"],
+["einschätzen","ก.","ประเมิน","to assess","Ich schätze die Lage ein.","ฉันประเมินสถานการณ์"],
+["übernehmen","ก.","รับช่วง/รับผิดชอบ","to take over","Ich übernehme die Aufgabe.","ฉันรับงานนี้"],
+["voraussehen","ก.","คาดการณ์ล่วงหน้า","to foresee","Das war nicht vorauszusehen.","คาดการณ์ไม่ได้"],
+["maßgeblich","คุณ.","สำคัญอย่างยิ่ง","decisive","maßgeblich beteiligt","มีส่วนสำคัญอย่างยิ่ง"],
+["erforderlich","คุณ.","ที่จำเป็น","required","eine erforderliche Genehmigung","การอนุมัติที่จำเป็น"],
+["unabdingbar","คุณ.","ขาดไม่ได้","indispensable","unabdingbare Voraussetzung","เงื่อนไขที่ขาดไม่ได้"],
+["umfassend","คุณ.","ครอบคลุม","comprehensive","eine umfassende Analyse","การวิเคราะห์ที่ครอบคลุม"],
+["zunehmend","คุณ.","เพิ่มขึ้นเรื่อยๆ","increasingly","zunehmend wichtig","สำคัญขึ้นเรื่อยๆ"],
+["sorgfältig","คุณ.","รอบคอบ","careful","sorgfältig prüfen","ตรวจสอบอย่างรอบคอบ"],
+["voraussichtlich","คุณ.","คาดว่า","presumably","voraussichtlich im Mai","คาดว่าในเดือนพฤษภาคม"],
+["gegebenenfalls","คุณ.","หากจำเป็น","if necessary","gegebenenfalls anpassen","ปรับหากจำเป็น"],
+["hinsichtlich","บ.","เกี่ยวกับ","regarding","hinsichtlich der Kosten","เกี่ยวกับค่าใช้จ่าย"],
+["bezüglich","บ.","เกี่ยวกับ","with respect to","bezüglich Ihrer Anfrage","เกี่ยวกับคำถามของคุณ"],
+["aufgrund","บ.","เนื่องจาก","due to","aufgrund der Lage","เนื่องจากสถานการณ์"],
+["angesichts","บ.","เมื่อพิจารณาถึง","in view of","angesichts der Krise","เมื่อพิจารณาถึงวิกฤต"],
+["nachhaltig","คุณ.","ยั่งยืน","sustainable","nachhaltiges Wachstum","การเติบโตที่ยั่งยืน"],
+["wesentlich","คุณ.","สำคัญ/อย่างมาก","essential","ein wesentlicher Punkt","ประเด็นสำคัญ"],
+["erheblich","คุณ.","อย่างมาก","considerable","erhebliche Kosten","ค่าใช้จ่ายมหาศาล"],
+["angemessen","คุณ.","เหมาะสม","appropriate","eine angemessene Lösung","ทางแก้ที่เหมาะสม"],
+["nachteilig","คุณ.","เป็นโทษ","detrimental","nachteilige Folgen","ผลที่เป็นโทษ"],
+["vorteilhaft","คุณ.","เป็นประโยชน์","advantageous","eine vorteilhafte Lage","ทำเลที่ได้เปรียบ"],
+["zuständig","คุณ.","ผู้รับผิดชอบ","responsible","Wer ist zuständig?","ใครรับผิดชอบ"],
+["verbindlich","คุณ.","มีผลผูกพัน","binding","eine verbindliche Zusage","คำมั่นที่มีผลผูกพัน"],
+["nachvollziehbar","คุณ.","เข้าใจได้/มีเหตุผล","comprehensible","eine nachvollziehbare Entscheidung","การตัดสินใจที่เข้าใจได้"],
+["umstritten","คุณ.","เป็นที่ถกเถียง","controversial","ein umstrittenes Thema","หัวข้อที่ถกเถียงกัน"],
+["grundsätzlich","คุณ.","โดยหลักการ","fundamentally","Grundsätzlich stimme ich zu.","โดยหลักการฉันเห็นด้วย"],
+["letztlich","คุณ.","ในที่สุด","ultimately","Letztlich zählt das Ergebnis.","ท้ายที่สุดผลลัพธ์สำคัญ"],
+["überwiegend","คุณ.","ส่วนใหญ่","predominantly","überwiegend positiv","ส่วนใหญ่เป็นบวก"],
+["beträchtlich","คุณ.","มากมาย","substantial","ein beträchtlicher Betrag","จำนวนเงินมหาศาล"],
+["ausschlaggebend","คุณ.","ชี้ขาด","decisive","der ausschlaggebende Faktor","ปัจจัยชี้ขาด"],
+["entsprechend","คุณ.","ตามนั้น/ที่สอดคล้อง","corresponding","entsprechende Maßnahmen","มาตรการที่สอดคล้อง"],
+["vielfältig","คุณ.","หลากหลาย","diverse","vielfältige Aufgaben","งานที่หลากหลาย"],
+["anspruchsvoll","คุณ.","ท้าทาย/เรียกร้องสูง","demanding","eine anspruchsvolle Aufgabe","งานที่ท้าทาย"],
+["langfristig","คุณ.","ระยะยาว","long-term","eine langfristige Lösung","ทางแก้ระยะยาว"],
+["kurzfristig","คุณ.","ระยะสั้น/กระทันหัน","short-term","eine kurzfristige Absage","การยกเลิกกระทันหัน"],
+["unverzichtbar","คุณ.","ขาดไม่ได้","essential","ein unverzichtbarer Beitrag","ส่วนร่วมที่ขาดไม่ได้"],
+["weitgehend","คุณ.","เป็นส่วนใหญ่","largely","weitgehend abgeschlossen","เสร็จเกือบทั้งหมด"],
+["folglich","คุณ.","ดังนั้น","consequently","Folglich müssen wir handeln.","ดังนั้นเราต้องลงมือ"],
+["dennoch","คุณ.","กระนั้นก็ตาม","nonetheless","Dennoch bleibt das Risiko.","กระนั้นความเสี่ยงยังคงอยู่"],
+["zudem","คุณ.","ยิ่งกว่านั้น","moreover","Zudem sinken die Kosten.","ยิ่งกว่านั้นค่าใช้จ่ายลดลง"],
+["hingegen","คุณ.","ในทางตรงกันข้าม","by contrast","Er hingegen blieb ruhig.","ส่วนเขากลับสงบ"],
+["einerseits","คุณ.","ในด้านหนึ่ง","on one hand","einerseits … andererseits …","ด้านหนึ่ง…อีกด้านหนึ่ง…"],
+["andererseits","คุณ.","ในอีกด้านหนึ่ง","on the other hand","andererseits ist es teuer","อีกด้านหนึ่งมันแพง"],
+["insbesondere","คุณ.","โดยเฉพาะอย่างยิ่ง","in particular","insbesondere im Sommer","โดยเฉพาะหน้าร้อน"],
+["beispielsweise","คุณ.","ยกตัวอย่างเช่น","for instance","beispielsweise in Berlin","เช่นในเบอร์ลิน"],
+["vermutlich","คุณ.","น่าจะ/สันนิษฐานว่า","presumably","Vermutlich liegt es daran.","น่าจะเป็นเพราะเหตุนั้น"],
+["keineswegs","คุณ.","ไม่เลยแม้แต่น้อย","by no means","Das ist keineswegs sicher.","นั่นไม่แน่นอนเลย"],
+["allerdings","คุณ.","อย่างไรก็ตาม","however","Allerdings gibt es Risiken.","อย่างไรก็ตามมีความเสี่ยง"],
+["zugleich","คุณ.","ในเวลาเดียวกัน","at the same time","zugleich günstig und gut","ทั้งถูกและดีในเวลาเดียวกัน"],
+["der Hinweis","น.","ข้อชี้แนะ","hint/notice","ein wichtiger Hinweis","ข้อชี้แนะสำคัญ"],
+["die Begebenheit","น.","เหตุการณ์","occurrence","eine seltsame Begebenheit","เหตุการณ์แปลกๆ"],
+["der Umstand","น.","สภาวการณ์","circumstance","unter diesen Umständen","ภายใต้สภาวการณ์เหล่านี้"],
+["das Ausmaß","น.","ขนาด/ขอบเขต","extent","das Ausmaß des Schadens","ขอบเขตความเสียหาย"],
+["die Spannung","น.","ความตึงเครียด","tension","politische Spannungen","ความตึงเครียดทางการเมือง"],
+["der Widerspruch","น.","ความขัดแย้ง","contradiction","ein klarer Widerspruch","ความขัดแย้งที่ชัดเจน"],
+["die Einigung","น.","การตกลงกัน","settlement","eine Einigung erzielen","บรรลุข้อตกลง"],
+["die Verzögerung","น.","ความล่าช้า","delay","eine erhebliche Verzögerung","ความล่าช้าที่มาก"],
+["der Mangel","น.","การขาดแคลน","shortage","ein Mangel an Personal","การขาดบุคลากร"],
+["der Bedarf","น.","ความต้องการ","demand/need","der Bedarf steigt","ความต้องการเพิ่ม"],
+["die Kompetenz","น.","ความเชี่ยวชาญ","competence","fachliche Kompetenz","ความเชี่ยวชาญเฉพาะด้าน"],
+["der Beweis","น.","หลักฐาน/การพิสูจน์","proof","ein eindeutiger Beweis","หลักฐานที่ชัดเจน"],
+["das Verständnis","น.","ความเข้าใจ","understanding","Vielen Dank für Ihr Verständnis.","ขอบคุณที่เข้าใจ"],
+["die Verantwortlichkeit","น.","ความรับผิดชอบ","accountability","klare Verantwortlichkeiten","ความรับผิดชอบที่ชัดเจน"],
+["die Auswertung","น.","การประเมินผล","evaluation","die Auswertung der Daten","การประเมินผลข้อมูล"],
+["der Ermessensspielraum","น.","ดุลยพินิจ","discretion","ein gewisser Ermessensspielraum","ดุลยพินิจระดับหนึ่ง"],
+["die Tragweite","น.","ผลกระทบกว้างไกล","significance","die Tragweite der Entscheidung","ผลกระทบของการตัดสินใจ"],
+["die Zielsetzung","น.","การตั้งเป้าหมาย","objective","eine klare Zielsetzung","เป้าหมายที่ชัดเจน"],
+["die Erkenntnis","น.","ความรู้ความเข้าใจ","insight","eine wichtige Erkenntnis","ข้อค้นพบสำคัญ"],
+["die Stellungnahme","น.","การแสดงความเห็น","statement","eine Stellungnahme abgeben","ออกแถลงการณ์"],
+["der Konsens","น.","ฉันทามติ","consensus","einen Konsens finden","หาฉันทามติ"],
+["die Befugnis","น.","อำนาจหน้าที่","authority","keine Befugnis dazu","ไม่มีอำนาจในเรื่องนั้น"],
+["die Verordnung","น.","กฎกระทรวง/ระเบียบ","regulation","eine neue Verordnung","ระเบียบใหม่"],
+["die Zustimmung","น.","ความยินยอม","consent","mit Zustimmung des Chefs","โดยหัวหน้ายินยอม"],
+["die Ablehnung","น.","การปฏิเสธ","rejection","eine klare Ablehnung","การปฏิเสธที่ชัดเจน"],
+["die Beschwerde","น.","การร้องเรียน","complaint","eine formelle Beschwerde","การร้องเรียนทางการ"],
+["der Widerruf","น.","การเพิกถอน","revocation","den Widerruf erklären","แจ้งการเพิกถอน"],
+["die Haftung","น.","ความรับผิด(ทางกฎหมาย)","liability","die Haftung übernehmen","รับผิดชอบทางกฎหมาย"],
+["die Frist verlängern","ก.","ขยายกำหนดเวลา","extend deadline","Wir verlängern die Frist.","เราขยายกำหนด"],
+["die Gebühr","น.","ค่าธรรมเนียม","fee","eine hohe Gebühr","ค่าธรรมเนียมสูง"],
+["die Förderung","น.","การสนับสนุน/เงินอุดหนุน","funding","staatliche Förderung","เงินอุดหนุนจากรัฐ"],
+["der Antragsteller","น.","ผู้ยื่นคำร้อง","applicant","Der Antragsteller wartet.","ผู้ยื่นคำร้องรออยู่"],
+["die Bearbeitung","น.","การดำเนินการ","processing","Die Bearbeitung dauert.","การดำเนินการใช้เวลา"],
+["die Bestätigung","น.","การยืนยัน","confirmation","eine schriftliche Bestätigung","การยืนยันเป็นลายลักษณ์อักษร"],
+["der Beschluss","น.","มติ","resolution","einen Beschluss fassen","ลงมติ"],
+["die Auflage","น.","เงื่อนไขที่กำหนด","condition imposed","unter bestimmten Auflagen","ภายใต้เงื่อนไขบางอย่าง"],
+["die Hypothese","น.","สมมติฐาน","hypothesis","eine Hypothese aufstellen","ตั้งสมมติฐาน"],
+["die Analyse","น.","การวิเคราะห์","analysis","eine gründliche Analyse","การวิเคราะห์ที่ละเอียด"],
+["die Schlussfolgerung ziehen","ก.","สรุป","draw conclusion","Daraus ziehe ich eine Schlussfolgerung.","ฉันได้ข้อสรุป"],
+["die Untersuchung","น.","การศึกษาวิจัย","study","eine wissenschaftliche Untersuchung","การศึกษาทางวิทยาศาสตร์"],
+["der Nachweis erbringen","ก.","แสดงหลักฐาน","provide proof","Ich erbringe den Nachweis.","ฉันแสดงหลักฐาน"],
+["die Datenlage","น.","สถานะข้อมูล","data situation","die aktuelle Datenlage","สถานะข้อมูลปัจจุบัน"],
+["die Statistik","น.","สถิติ","statistics","laut Statistik","ตามสถิติ"],
+["der Faktor","น.","ปัจจัย","factor","ein entscheidender Faktor","ปัจจัยชี้ขาด"],
+["die Variable","น.","ตัวแปร","variable","eine unabhängige Variable","ตัวแปรอิสระ"],
+["die Korrelation","น.","ความสัมพันธ์เชิงสถิติ","correlation","eine starke Korrelation","ความสัมพันธ์ที่แข็งแกร่ง"],
+["die Schätzung","น.","การประมาณการ","estimate","eine grobe Schätzung","การประมาณคร่าวๆ"],
+["die Debatte","น.","การอภิปราย","debate","eine öffentliche Debatte","การอภิปรายสาธารณะ"],
+["das Argument","น.","ข้อโต้แย้ง","argument","ein überzeugendes Argument","ข้อโต้แย้งที่น่าเชื่อ"],
+["der Befürworter","น.","ผู้สนับสนุน","supporter","Die Befürworter argumentieren …","ฝ่ายสนับสนุนอ้างว่า…"],
+["der Kritiker","น.","ผู้วิจารณ์","critic","Kritiker befürchten …","ฝ่ายวิจารณ์กังวลว่า…"],
+["die Mehrheit","น.","เสียงข้างมาก","majority","die große Mehrheit","คนส่วนใหญ่"],
+["die Minderheit","น.","เสียงข้างน้อย","minority","eine kleine Minderheit","คนส่วนน้อย"],
+["die Verantwortung übernehmen","ก.","รับผิดชอบ","take responsibility","Ich übernehme die Verantwortung.","ฉันรับผิดชอบ"],
+["die Toleranz","น.","ความอดกลั้น","tolerance","gegenseitige Toleranz","ความอดกลั้นซึ่งกันและกัน"],
+["das Vorurteil","น.","อคติ","prejudice","Vorurteile abbauen","ลดอคติ"],
+["die Chancengleichheit","น.","ความเสมอภาคของโอกาส","equal opportunity","Chancengleichheit fördern","ส่งเสริมโอกาสที่เท่าเทียม"],
+["der Wandel","น.","การเปลี่ยนแปลง","change","der demografische Wandel","การเปลี่ยนแปลงทางประชากร"],
+["die Belastung","น.","ภาระ/ความกดดัน","burden","eine psychische Belastung","ภาระทางจิตใจ"],
+["die Entlastung","น.","การผ่อนภาระ","relief","eine spürbare Entlastung","การผ่อนภาระที่รู้สึกได้"],
+["die Produktivität","น.","ผลิตภาพ","productivity","die Produktivität steigern","เพิ่มผลิตภาพ"],
+["die Rentabilität","น.","ความสามารถทำกำไร","profitability","die Rentabilität sichern","รักษาความสามารถทำกำไร"],
+["die Optimierung","น.","การปรับให้เหมาะสม","optimization","Optimierung der Abläufe","การปรับขั้นตอนให้เหมาะ"],
+["die Umstrukturierung","น.","การปรับโครงสร้าง","restructuring","eine umfassende Umstrukturierung","การปรับโครงสร้างครั้งใหญ่"],
+["der Mehrwert","น.","มูลค่าเพิ่ม","added value","einen Mehrwert schaffen","สร้างมูลค่าเพิ่ม"],
+["die Verbindlichkeiten","น.","หนี้สิน","liabilities","offene Verbindlichkeiten","หนี้สินคงค้าง"],
+["die Rückstellung","น.","การกันสำรอง","provision","eine Rückstellung bilden","ตั้งสำรอง"],
+["die Schnittstellenkommunikation","น.","การสื่อสารระหว่างฝ่าย","interface comm.","reibungslose Kommunikation","การสื่อสารที่ราบรื่น"],
+["die Eigenverantwortung","น.","ความรับผิดชอบของตน","personal responsibility","mit hoher Eigenverantwortung","ด้วยความรับผิดชอบสูง"],
+["die Belastbarkeit","น.","ความทนต่อแรงกดดัน","resilience","hohe Belastbarkeit","ทนแรงกดดันได้ดี"],
+["die Eigeninitiative","น.","ความริเริ่มด้วยตนเอง","initiative","viel Eigeninitiative zeigen","แสดงความริเริ่ม"],
+["die Teamfähigkeit","น.","ความสามารถทำงานเป็นทีม","teamwork ability","ausgeprägte Teamfähigkeit","ทำงานเป็นทีมได้ดีมาก"],
+["die Flexibilität","น.","ความยืดหยุ่น","flexibility","zeitliche Flexibilität","ความยืดหยุ่นด้านเวลา"],
+["die Sorgfalt","น.","ความรอบคอบ","diligence","mit großer Sorgfalt","ด้วยความรอบคอบ"],
+["der Anspruch","น.","สิทธิเรียกร้อง/ความคาดหวัง","claim","einen Anspruch erheben","ยื่นข้อเรียกร้อง"],
+["sich abzeichnen","ก.","เริ่มปรากฏชัด","to emerge","Eine Lösung zeichnet sich ab.","ทางแก้เริ่มปรากฏ"],
+["sich bewähren","ก.","พิสูจน์คุณค่า","to prove itself","Die Methode hat sich bewährt.","วิธีนี้พิสูจน์แล้วว่าได้ผล"],
+["nahelegen","ก.","ชี้ให้เห็น/แนะ","to suggest","Die Daten legen nahe, dass …","ข้อมูลชี้ว่า…"],
+["zugrunde liegen","ก.","เป็นพื้นฐานของ","to underlie","Diesem Plan liegt eine Idee zugrunde.","แผนนี้มีแนวคิดเป็นพื้นฐาน"],
+["in Erwägung ziehen","ก.","พิจารณา","to consider","Wir ziehen das in Erwägung.","เรากำลังพิจารณาเรื่องนี้"],
+["in Anspruch nehmen","ก.","ใช้สิทธิ์/ใช้บริการ","to make use of","Hilfe in Anspruch nehmen","ขอความช่วยเหลือ"],
+["Rücksicht nehmen","ก.","คำนึงถึง(ผู้อื่น)","to be considerate","Rücksicht auf andere nehmen","คำนึงถึงผู้อื่น"],
+["Stellung nehmen","ก.","แสดงจุดยืน","to take a stance","Ich nehme dazu Stellung.","ฉันขอแสดงจุดยืน"],
+["zur Verfügung stehen","ก.","พร้อมให้ใช้","to be available","Ich stehe Ihnen zur Verfügung.","ฉันพร้อมช่วยคุณ"],
+["in Kraft treten","ก.","มีผลบังคับใช้","to take effect","Das Gesetz tritt in Kraft.","กฎหมายมีผลบังคับใช้"],
+["außer Acht lassen","ก.","มองข้าม","to disregard","Das darf man nicht außer Acht lassen.","เรื่องนี้มองข้ามไม่ได้"],
+["in Frage stellen","ก.","ตั้งคำถาม/ท้าทาย","to question","Das stellt alles in Frage.","สิ่งนี้ทำให้ทุกอย่างน่าสงสัย"],
+["sich durchsetzen","ก.","ผลักดันให้สำเร็จ","to prevail","Die Idee setzt sich durch.","แนวคิดนี้เป็นที่ยอมรับ"],
+["abwickeln","ก.","ดำเนินการให้เสร็จ","to process/handle","den Auftrag abwickeln","จัดการคำสั่งซื้อให้เสร็จ"],
+["gewährleisten dass","ก.","รับประกันว่า","ensure that","Wir gewährleisten, dass …","เรารับประกันว่า…"],
+["resultieren","ก.","เป็นผลมาจาก","to result","Daraus resultiert ein Problem.","จากนั้นเกิดปัญหา"],
+["erweisen","ก.","แสดงว่าเป็น","to prove to be","Es erwies sich als richtig.","มันกลับกลายเป็นถูกต้อง"],
+["zurückführen auf","ก.","สืบสาเหตุไปที่","to attribute to","Das führt man auf X zurück.","สาเหตุมาจาก X"],
+["sich erstrecken","ก.","ครอบคลุม/แผ่ขยาย","to extend","Das erstreckt sich über Jahre.","กินเวลาหลายปี"],
+["unterliegen","ก.","อยู่ภายใต้/ขึ้นกับ","to be subject to","Das unterliegt der Steuer.","สิ่งนี้ต้องเสียภาษี"],
+["voranschreiten","ก.","คืบหน้าไป","to advance","Die Arbeit schreitet voran.","งานคืบหน้า"],
+["sich abspielen","ก.","เกิดขึ้น/ดำเนินไป","to take place","Was spielt sich hier ab?","เกิดอะไรขึ้นที่นี่"],
+["aufweisen","ก.","แสดง/มี(ลักษณะ)","to exhibit","Das Produkt weist Mängel auf.","สินค้ามีตำหนิ"],
+["verzeichnen","ก.","บันทึก(การเพิ่ม/ลด)","to record","einen Anstieg verzeichnen","บันทึกการเพิ่มขึ้น"],
+["sich verschärfen","ก.","ทวีความรุนแรง","to intensify","Die Lage verschärft sich.","สถานการณ์รุนแรงขึ้น"],
+["beziffern","ก.","ระบุเป็นตัวเลข","to quantify","Den Schaden beziffern","ประเมินความเสียหายเป็นตัวเลข"],
+["ausreichend","คุณ.","เพียงพอ","sufficient","ausreichende Kenntnisse","ความรู้ที่เพียงพอ"],
+["unzureichend","คุณ.","ไม่เพียงพอ","insufficient","unzureichende Mittel","ทรัพยากรไม่พอ"],
+["fundiert","คุณ.","มีพื้นฐานแน่น","well-founded","fundierte Kenntnisse","ความรู้ที่แน่น"],
+["umsichtig","คุณ.","รอบคอบมีวิจารณญาณ","prudent","umsichtig handeln","กระทำอย่างรอบคอบ"],
+["maßvoll","คุณ.","พอประมาณ","moderate","ein maßvoller Umgang","การจัดการที่พอประมาณ"],
+["nachträglich","คุณ.","ภายหลัง","subsequent","eine nachträgliche Änderung","การแก้ไขภายหลัง"],
+["vorläufig","คุณ.","ชั่วคราว","provisional","ein vorläufiges Ergebnis","ผลเบื้องต้น"],
+["endgültig","คุณ.","ขั้นสุดท้าย","final","eine endgültige Entscheidung","การตัดสินใจขั้นสุดท้าย"],
+["unmittelbar","คุณ.","โดยตรง/ทันที","immediate","unmittelbare Folgen","ผลโดยตรง"],
+["mittelbar","คุณ.","โดยอ้อม","indirect","mittelbare Auswirkungen","ผลทางอ้อม"],
+["weitreichend","คุณ.","กว้างไกล","far-reaching","weitreichende Konsequenzen","ผลที่กว้างไกล"],
+["geringfügig","คุณ.","เล็กน้อย","minor","eine geringfügige Abweichung","ความคลาดเคลื่อนเล็กน้อย"],
+["maßgeschneidert","คุณ.","ที่ออกแบบเฉพาะ","tailored","eine maßgeschneiderte Lösung","ทางแก้ที่ออกแบบเฉพาะ"],
+["reibungslos","คุณ.","ราบรื่น","smooth","ein reibungsloser Ablauf","ขั้นตอนที่ราบรื่น"],
+["nachhaltig wirksam","คุณ.","ได้ผลอย่างยั่งยืน","sustainably effective","nachhaltig wirksame Maßnahmen","มาตรการที่ได้ผลยั่งยืน"],
+["aussagekräftig","คุณ.","สื่อความหมายชัด","meaningful","aussagekräftige Daten","ข้อมูลที่บอกอะไรได้มาก"],
+["repräsentativ","คุณ.","เป็นตัวแทน","representative","eine repräsentative Umfrage","การสำรวจที่เป็นตัวแทน"],
+["plausibel","คุณ.","ฟังขึ้น/น่าเชื่อ","plausible","eine plausible Erklärung","คำอธิบายที่น่าเชื่อ"],
+["unstrittig","คุณ.","ไม่มีข้อโต้แย้ง","undisputed","ein unstrittiger Punkt","ประเด็นที่ไม่มีใครเถียง"],
+["bedauerlich","คุณ.","น่าเสียดาย","regrettable","ein bedauerlicher Vorfall","เหตุการณ์ที่น่าเสียดาย"],
+["erstrebenswert","คุณ.","น่าปรารถนา","desirable","ein erstrebenswertes Ziel","เป้าหมายที่น่าปรารถนา"],
+["fragwürdig","คุณ.","น่าสงสัย","questionable","eine fragwürdige Methode","วิธีที่น่าสงสัย"],
+["unverhältnismäßig","คุณ.","เกินสัดส่วน","disproportionate","ein unverhältnismäßiger Aufwand","ความพยายามที่เกินควร"],
+["bemerkenswert","คุณ.","น่าทึ่ง","remarkable","ein bemerkenswerter Erfolg","ความสำเร็จที่น่าทึ่ง"],
+["zwangsläufig","คุณ.","อย่างหลีกเลี่ยงไม่ได้","inevitably","Das führt zwangsläufig dazu.","สิ่งนี้นำไปสู่ผลนั้นอย่างเลี่ยงไม่ได้"],
+["maßgeblich beteiligt","คุณ.","มีส่วนสำคัญ","significantly involved","Er war maßgeblich beteiligt.","เขามีส่วนสำคัญ"],
+["zukunftsorientiert","คุณ.","มุ่งสู่อนาคต","future-oriented","ein zukunftsorientiertes Konzept","แนวคิดที่มองอนาคต"],
+["praxisnah","คุณ.","ใกล้เคียงการปฏิบัติจริง","practical","eine praxisnahe Ausbildung","การฝึกที่เน้นปฏิบัติ"],
+["fachgerecht","คุณ.","ตามหลักวิชาชีพ","professionally correct","fachgerecht ausführen","ดำเนินการตามหลักวิชาชีพ"],
+["verhältnismäßig","คุณ.","ค่อนข้าง/ได้สัดส่วน","relatively","verhältnismäßig gering","ค่อนข้างน้อย"],
+["nennenswert","คุณ.","ควรค่าแก่การเอ่ยถึง","noteworthy","kein nennenswerter Unterschied","ความต่างที่ไม่มีนัยสำคัญ"],
+["sachlich","คุณ.","ตามข้อเท็จจริง/ปราศจากอคติ","objective","eine sachliche Diskussion","การถกที่อยู่บนข้อเท็จจริง"],
+["differenziert","คุณ.","มีมิติ/ละเอียดอ่อน","nuanced","eine differenzierte Sichtweise","มุมมองที่มีมิติ"],
+["die Rahmenrichtlinie","น.","แนวทางกรอบ","framework guideline","gemäß der Rahmenrichtlinie","ตามแนวทางกรอบ"]
+]
+};
+
+const WRITING = [
+{lvl:"einfach",task:"Stellen Sie sich kurz vor: Name, Herkunft, Beruf und Hobbys.",th:"แนะนำตัวเอง: ชื่อ ที่มา อาชีพ งานอดิเรก",
+ model:"Hallo, mein Name ist Suda. Ich komme aus Thailand und wohne jetzt in Berlin. Ich bin 29 Jahre alt und arbeite als Köchin. In meiner Freizeit lese ich gern und gehe spazieren. Ich lerne Deutsch, weil ich in Deutschland arbeiten möchte.",
+ tips:["Mein Name ist … / Ich heiße …","Ich komme aus … und wohne in …","Ich arbeite als …","In meiner Freizeit … gern"]},
+{lvl:"einfach",task:"Schreiben Sie eine kurze E-Mail an einen Freund und laden Sie ihn zum Abendessen ein.",th:"อีเมลสั้นๆ ชวนเพื่อนมาทานข้าวเย็น",
+ model:"Liebe Mai,\nwie geht es dir? Ich möchte dich gern zum Abendessen einladen. Hast du am Samstag um 19 Uhr Zeit? Ich koche thailändisches Essen. Bitte sag mir kurz Bescheid.\nViele Grüße\nSuda",
+ tips:["Liebe/Lieber … (ขึ้นต้นแบบไม่ทางการ)","Ich möchte dich gern … einladen","Hast du am … Zeit?","Viele Grüße (ลงท้าย)"]},
+{lvl:"einfach",task:"Beschreiben Sie Ihren typischen Arbeitstag.",th:"อธิบายวันทำงานทั่วไปของคุณ",
+ model:"Mein Arbeitstag beginnt um sieben Uhr. Zuerst frühstücke ich und fahre dann mit dem Bus zur Arbeit. Ich arbeite von acht bis siebzehn Uhr. Mittags esse ich mit meinen Kollegen. Nach der Arbeit gehe ich nach Hause und koche. Am Abend lerne ich ein bisschen Deutsch.",
+ tips:["Mein Arbeitstag beginnt um …","Zuerst … dann … danach …","Ich arbeite von … bis …","Nach der Arbeit …"]},
+{lvl:"mittel",task:"Bitten Sie Ihren Chef per E-Mail höflich um einen freien Tag.",th:"อีเมลขอลาหยุดกับหัวหน้าอย่างสุภาพ",
+ model:"Sehr geehrter Herr Müller,\nich möchte gern vom 5. bis 9. Mai Urlaub nehmen, da mich in dieser Zeit meine Familie aus Thailand besucht. Meine Aufgaben kann in dieser Zeit Frau Bauer übernehmen. Ich hoffe, das ist möglich, und danke Ihnen im Voraus.\nMit freundlichen Grüßen\nSuda Wong",
+ tips:["Sehr geehrter Herr / Sehr geehrte Frau …","Ich möchte gern … Urlaub nehmen","…, da … (ให้เหตุผล)","Mit freundlichen Grüßen (ลงท้ายทางการ)"]},
+{lvl:"mittel",task:"Schreiben Sie eine E-Mail an die Arztpraxis, um Ihren Termin zu verschieben.",th:"อีเมลถึงคลินิกเพื่อเลื่อนนัดหมอ",
+ model:"Sehr geehrte Damen und Herren,\nich habe am Dienstag, den 12. März, einen Termin in Ihrer Praxis. Leider kann ich diesen Termin aus beruflichen Gründen nicht wahrnehmen. Könnten Sie mir bitte einen neuen Termin in der nächsten Woche geben? Vielen Dank für Ihr Verständnis.\nMit freundlichen Grüßen\n…",
+ tips:["Sehr geehrte Damen und Herren","Leider kann ich … nicht wahrnehmen","Könnten Sie mir bitte … (คำขอสุภาพ)","Vielen Dank für Ihr Verständnis"]},
+{lvl:"mittel",task:"Schreiben Sie eine Beschwerde an ein Hotel über ein schmutziges Zimmer.",th:"จดหมายร้องเรียนโรงแรมเรื่องห้องพักไม่สะอาด",
+ model:"Sehr geehrte Damen und Herren,\nvom 3. bis 5. Juni war ich Gast in Ihrem Hotel (Zimmer 204). Leider war das Zimmer bei meiner Ankunft nicht sauber: Das Bad war schmutzig und die Bettwäsche wurde nicht gewechselt. Ich habe mich an der Rezeption beschwert, doch es wurde nichts unternommen. Ich erwarte daher eine teilweise Rückerstattung.\nMit freundlichen Grüßen\n…",
+ tips:["Leider war … nicht …","Ich habe mich … beschwert","Ich erwarte daher …","อธิบายปัญหาเป็นข้อๆ ชัดเจน"]},
+{lvl:"mittel",task:"Schreiben Sie eine kurze Bewerbung um eine Stelle als Pflegekraft.",th:"ใบสมัครงานสั้นๆ ตำแหน่งผู้ช่วยพยาบาล",
+ model:"Sehr geehrte Damen und Herren,\nmit großem Interesse bewerbe ich mich um die Stelle als Pflegekraft in Ihrem Krankenhaus. Ich habe drei Jahre Erfahrung in der Pflege und spreche Deutsch auf dem Niveau B1. Ich bin zuverlässig, geduldig und arbeite gern im Team. Über eine Einladung zu einem Vorstellungsgespräch würde ich mich sehr freuen.\nMit freundlichen Grüßen\n…",
+ tips:["Mit großem Interesse bewerbe ich mich um …","Ich habe … Jahre Erfahrung in …","Ich bin zuverlässig, … (คุณสมบัติ)","Über eine Einladung … würde ich mich freuen"]},
+{lvl:"schwer",task:"Erörtern Sie die Vor- und Nachteile von Homeoffice (ca. 150 Wörter).",th:"อภิปรายข้อดีข้อเสียของการทำงานที่บ้าน",
+ model:"Homeoffice hat in den letzten Jahren stark zugenommen. Ein wesentlicher Vorteil ist die Flexibilität: Arbeitnehmer sparen Zeit für den Arbeitsweg und können Beruf und Familie besser vereinbaren. Außerdem arbeiten viele Menschen zu Hause konzentrierter. Allerdings gibt es auch Nachteile. Der persönliche Kontakt zu den Kollegen fehlt, und die Grenze zwischen Arbeit und Freizeit verschwimmt häufig. Meiner Meinung nach ist eine Mischung aus Homeoffice und Büro die beste Lösung, weil sie die Vorteile beider Seiten verbindet.",
+ tips:["Ein wesentlicher Vorteil ist …","Außerdem … / Darüber hinaus …","Allerdings gibt es auch Nachteile …","Meiner Meinung nach … , weil …"]},
+{lvl:"schwer",task:"Nehmen Sie Stellung: „Sollten Mitarbeiter eine Vier-Tage-Woche bekommen?“",th:"แสดงความเห็น: ควรทำงานสัปดาห์ละ 4 วันหรือไม่",
+ model:"In letzter Zeit wird häufig über die Vier-Tage-Woche diskutiert. Befürworter argumentieren, dass weniger Arbeitstage die Gesundheit der Mitarbeiter verbessern und die Produktivität steigern. Kritiker hingegen befürchten höhere Kosten und Probleme bei der Organisation. Ich bin der Meinung, dass eine Vier-Tage-Woche sinnvoll sein kann, sofern die Aufgaben weiterhin zuverlässig erledigt werden. Entscheidend ist, dass sie an die jeweilige Branche angepasst wird.",
+ tips:["Befürworter argumentieren, dass …","Kritiker hingegen befürchten …","Ich bin der Meinung, dass …","Entscheidend ist, dass …"]},
+{lvl:"schwer",task:"Schreiben Sie einen formellen Brief, um sich über eine fehlerhafte Rechnung zu beschweren.",th:"จดหมายทางการร้องเรียนใบแจ้งหนี้ผิดพลาด",
+ model:"Sehr geehrte Damen und Herren,\nam 10. April habe ich die Rechnung Nr. 2024-187 erhalten. Bei der Prüfung ist mir aufgefallen, dass mir ein Betrag von 50 Euro zu viel berechnet wurde. Ich bitte Sie daher, die Rechnung zu korrigieren und mir eine neue Fassung zuzusenden. Eine Bestätigung bis zum Ende der Woche wäre wünschenswert.\nMit freundlichen Grüßen\n…",
+ tips:["Bei der Prüfung ist mir aufgefallen, dass …","Ich bitte Sie daher, … zu …","… wäre wünschenswert","อ้างเลขที่/วันที่ให้ชัด"]},
+{lvl:"schwer",task:"Verfassen Sie ein Anschreiben, in dem Sie sich um eine Beförderung bewerben.",th:"จดหมายสมัครเพื่อขอเลื่อนตำแหน่ง",
+ model:"Sehr geehrte Frau Schmidt,\nseit vier Jahren bin ich in der Abteilung Logistik tätig und habe in dieser Zeit zahlreiche Projekte erfolgreich geleitet. Daher möchte ich mich gern um die frei werdende Position der Teamleiterin bewerben. Ich bin überzeugt, dass ich mit meiner Erfahrung und meiner Zuverlässigkeit einen wertvollen Beitrag leisten kann. Über ein persönliches Gespräch würde ich mich sehr freuen.\nMit freundlichen Grüßen\n…",
+ tips:["Seit … Jahren bin ich … tätig","Daher möchte ich mich gern um … bewerben","Ich bin überzeugt, dass …","einen wertvollen Beitrag leisten"]},
+{lvl:"schwer",task:"Diskutieren Sie: Welche Rolle spielt Weiterbildung im Berufsleben?",th:"อภิปราย: การพัฒนาตนเองมีบทบาทอย่างไรในการทำงาน",
+ model:"Weiterbildung spielt im heutigen Berufsleben eine immer größere Rolle. Da sich Technologien und Anforderungen ständig verändern, müssen Arbeitnehmer ihre Kenntnisse regelmäßig aktualisieren. Wer sich weiterbildet, erhöht nicht nur seine Chancen auf dem Arbeitsmarkt, sondern bleibt auch motiviert. Aus meiner Sicht sollten sowohl Unternehmen als auch Mitarbeiter in Weiterbildung investieren, denn beide Seiten profitieren langfristig davon.",
+ tips:["… spielt eine immer größere Rolle","Da … , müssen …","nicht nur … , sondern auch …","Aus meiner Sicht sollten …"]}
+];
+
+const CHECKLIST = [
+ "เริ่มด้วยคำทักทายที่ถูกต้อง (Sehr geehrte… ทางการ / Liebe… ไม่ทางการ)",
+ "กริยา (Verb) อยู่ตำแหน่งที่ 2 ในประโยคหลัก",
+ "คำนาม (Nomen) ขึ้นต้นด้วยตัวพิมพ์ใหญ่ทุกคำ",
+ "ใช้ der/die/das และ case (Akkusativ/Dativ) ถูกต้อง",
+ "ตอบครบทุกประเด็นที่โจทย์ถาม",
+ "ลงท้ายเหมาะกับระดับความเป็นทางการ (Mit freundlichen Grüßen / Viele Grüße)",
+ "ตรวจการสะกดและเครื่องหมายวรรคตอนอีกรอบ"
+];
+
+const READING = {
+einfach:{title:"Ein neuer Job in Deutschland",
+ text:"Anna kommt aus Thailand und arbeitet seit drei Monaten in einem Krankenhaus in München. Am Anfang war alles schwierig: die Sprache, die Kollegen und die vielen Regeln. Jeden Tag lernte sie neue Wörter und schrieb sie in ein kleines Heft. Ihre Kollegin Maria half ihr oft und erklärte ihr die Aufgaben. Nach einigen Wochen fühlte sich Anna sicherer. Heute versteht sie fast alles und spricht jeden Tag mehr Deutsch. Sie ist stolz auf ihren Fortschritt.",
+ trans:"อันนามาจากประเทศไทยและทำงานในโรงพยาบาลที่มิวนิกมาได้สามเดือนแล้ว ตอนแรกทุกอย่างยากไปหมด ทั้งภาษา เพื่อนร่วมงาน และกฎเกณฑ์มากมาย ทุกวันเธอเรียนคำศัพท์ใหม่และจดลงในสมุดเล่มเล็ก มาเรียเพื่อนร่วมงานช่วยเธอบ่อยๆ และอธิบายงานให้ฟัง หลังจากผ่านไปไม่กี่สัปดาห์ อันนารู้สึกมั่นใจขึ้น วันนี้เธอเข้าใจเกือบทุกอย่างและพูดเยอรมันได้มากขึ้นทุกวัน เธอภูมิใจในความก้าวหน้าของตัวเอง",
+ q:[
+  {q:"Woher kommt Anna?",o:["aus Deutschland","aus Thailand","aus China"],a:1},
+  {q:"Wo arbeitet Anna?",o:["in einem Hotel","in einer Schule","in einem Krankenhaus"],a:2},
+  {q:"Wer hat Anna oft geholfen?",o:["ihre Kollegin Maria","ihr Chef","ihre Mutter"],a:0},
+  {q:"Wie fühlt sich Anna heute?",o:["traurig","stolz und sicherer","müde"],a:1}
+ ]},
+mittel:{title:"Eine Nachricht vom Chef",
+ text:"Liebe Kolleginnen und Kollegen, am nächsten Montag findet um 10 Uhr eine wichtige Besprechung statt. Wir sprechen über das neue Projekt und die Aufgaben für den Sommer. Bitte bringen Sie Ihre Unterlagen mit und seien Sie pünktlich. Wer nicht teilnehmen kann, soll mir bis Freitag eine E-Mail schreiben. Nach der Besprechung gibt es einen kleinen Imbiss. Vielen Dank und beste Grüße, Herr Weber.",
+ trans:"เรียนเพื่อนร่วมงานทุกท่าน วันจันทร์หน้าเวลา 10 โมงจะมีการประชุมสำคัญ เราจะคุยกันเรื่องโปรเจกต์ใหม่และงานสำหรับช่วงหน้าร้อน กรุณานำเอกสารมาด้วยและมาตรงเวลา ใครที่มาไม่ได้ ขอให้ส่งอีเมลถึงผมภายในวันศุกร์ หลังประชุมจะมีของว่างเล็กน้อย ขอบคุณครับ ด้วยความนับถือ คุณเวเบอร์",
+ q:[
+  {q:"Wann findet die Besprechung statt?",o:["am Freitag um 9 Uhr","am Montag um 10 Uhr","am Sonntag um 12 Uhr"],a:1},
+  {q:"Worüber wird gesprochen?",o:["über das neue Projekt","über den Urlaub","über die Gehälter"],a:0},
+  {q:"Was sollen die Mitarbeiter mitbringen?",o:["Essen","ihre Unterlagen","einen Computer"],a:1},
+  {q:"Was passiert nach der Besprechung?",o:["alle gehen nach Hause","es gibt einen Imbiss","es gibt ein Foto"],a:1}
+ ]},
+schwer:{title:"Fachkräftemangel in Deutschland",
+ text:"In vielen Branchen fehlen in Deutschland qualifizierte Fachkräfte. Besonders im Gesundheitswesen und im Handwerk ist der Mangel deutlich spürbar. Aus diesem Grund versuchen Unternehmen zunehmend, Arbeitskräfte aus dem Ausland zu gewinnen. Voraussetzung dafür sind jedoch ausreichende Deutschkenntnisse und anerkannte Qualifikationen. Die Bundesregierung hat daher die gesetzlichen Rahmenbedingungen vereinfacht, um die Einwanderung von Fachkräften zu erleichtern. Experten betonen allerdings, dass auch die Integration am Arbeitsplatz eine maßgebliche Rolle spielt.",
+ trans:"ในหลายอุตสาหกรรมของเยอรมนีขาดแคลนแรงงานฝีมือที่มีคุณภาพ โดยเฉพาะในภาคสาธารณสุขและงานช่างฝีมือเห็นการขาดแคลนชัดเจน ด้วยเหตุนี้บริษัทต่างๆ จึงพยายามดึงแรงงานจากต่างประเทศมากขึ้นเรื่อยๆ แต่เงื่อนไขคือต้องมีความรู้ภาษาเยอรมันเพียงพอและมีคุณวุฒิที่ได้รับการรับรอง รัฐบาลกลางจึงทำให้เงื่อนไขทางกฎหมายง่ายขึ้นเพื่อให้การเข้าเมืองของแรงงานฝีมือสะดวกขึ้น อย่างไรก็ตามผู้เชี่ยวชาญเน้นว่าการปรับตัวเข้ากับที่ทำงานก็มีบทบาทสำคัญอย่างยิ่งเช่นกัน",
+ q:[
+  {q:"In welchen Bereichen ist der Mangel besonders spürbar?",o:["Tourismus und Sport","Gesundheitswesen und Handwerk","Banken und Medien"],a:1},
+  {q:"Was ist eine Voraussetzung für ausländische Fachkräfte?",o:["ein Auto","Deutschkenntnisse und anerkannte Qualifikationen","ein deutscher Pass"],a:1},
+  {q:"Was hat die Bundesregierung getan?",o:["die Rahmenbedingungen vereinfacht","die Steuern erhöht","neue Schulen gebaut"],a:0},
+  {q:"Was betonen die Experten?",o:["die Bezahlung","die Integration am Arbeitsplatz","die Arbeitszeit"],a:1}
+ ]}
+};
+
+/* ===================== HELPERS ===================== */
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LV = id => LEVELS.find(l => l.id === id);
+const POS = {"น.":"คำนาม","ก.":"กริยา","คุณ.":"คำขยาย/คำเชื่อม","บ.":"บุพบท"};
+function fmtWord(s){
+  const m = String(s).match(/^(der|die|das) (.+)$/);
+  return m ? `<span class="art art-${m[1]}">${m[1]}</span> ${esc(m[2])}` : esc(s);
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+let toastT;
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),1600);}
+let deVoice=null;
+function pickVoice(){try{deVoice=speechSynthesis.getVoices().find(v=>/^de/i.test(v.lang))||null;}catch(e){}}
+if("speechSynthesis" in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+function speak(t){
+  if(!("speechSynthesis" in window)){toast("เครื่องนี้ไม่รองรับเสียงอ่าน");return;}
+  const u=new SpeechSynthesisUtterance(t);u.lang="de-DE";u.rate=.9;if(deVoice)u.voice=deVoice;
+  speechSynthesis.cancel();speechSynthesis.speak(u);
+}
+
+/* ===================== STATE ===================== */
+const KEY="deutschpro_v2";
+let S={known:{einfach:[],mittel:[],schwer:[]},read:[],write:[],drafts:{},pos:{einfach:0,mittel:0,schwer:0},lvl:"einfach",fs:17,mode:"cards"};
+let known={};
+function load(){
+  try{
+    const s=JSON.parse(localStorage.getItem(KEY));
+    if(s) S=Object.assign(S,s);
+    else{ // migrate from old version
+      const o=JSON.parse(localStorage.getItem("dp_off"));
+      if(o){S.known=Object.assign(S.known,o.known||{});S.read=o.readDone||[];}
+    }
+  }catch(e){}
+  known={};LEVELS.forEach(l=>known[l.id]=new Set(S.known[l.id]||[]));
+}
+let saveT;
+function save(){
+  LEVELS.forEach(l=>S.known[l.id]=[...known[l.id]]);
+  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+}
+function saveSoon(){clearTimeout(saveT);saveT=setTimeout(save,400);}
+
+/* ===================== NAV ===================== */
+const VIEWS=["home","vocab","read","write"];
+function show(v){
+  VIEWS.forEach(id=>$("#"+id).classList.toggle("hidden",id!==v));
+  $$("[data-v]").forEach(b=>b.classList.toggle("on",b.dataset.v===v));
+  window.scrollTo(0,0);
+  if(v==="home")renderHome();
+  if(v==="vocab")renderVocab();
+  if(v==="read")renderRead();
+  if(v==="write")renderWrite();
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(b)show(b.dataset.v);});
+
+/* font size */
+const FS=[15,17,19,21];
+function applyFs(){document.documentElement.style.fontSize=S.fs+"px";}
+$("#fsBtn").onclick=()=>{const i=FS.indexOf(S.fs);S.fs=FS[(i+1)%FS.length];applyFs();save();toast("ขนาดตัวอักษร "+S.fs+"px");};
+
+/* ===================== HOME ===================== */
+function renderHome(){
+  const L=LV(S.lvl), set=VOCAB[S.lvl], p=(S.pos[S.lvl]||0)+1;
+  $("#contBtn").innerHTML=`<span class="ic">▶️</span><span style="flex:1"><b>เรียนต่อจากเดิม</b>
+    <small>คำศัพท์ระดับ${L.th} (${L.cefr}) · จำได้แล้ว ${known[S.lvl].size} / ${set.length} คำ</small></span><span style="font-size:1.4rem">›</span>`;
+  $("#homeLevels").innerHTML=LEVELS.map(l=>{
+    const n=known[l.id].size,t=VOCAB[l.id].length;
+    return `<button class="lvlrow" data-lvl="${l.id}" style="--c:${l.color}">
+      <span class="t"><b>${l.th} <span class="mono" style="color:${l.color}">${l.cefr}</span></b><span style="color:var(--inkSoft);font-size:.9rem">${n} / ${t} คำ</span></span>
+      <span class="prog"><i style="width:${n/t*100}%"></i></span></button>`;
+  }).join("");
+  $("#statRead").textContent=S.read.length+"/"+Object.keys(READING).length;
+  $("#statWrite").textContent=S.write.length+"/"+WRITING.length;
+}
+$("#contBtn").onclick=()=>show("vocab");
+$("#homeLevels").onclick=e=>{const b=e.target.closest("[data-lvl]");if(!b)return;S.lvl=b.dataset.lvl;save();show("vocab");};
+$("#resetBtn").onclick=()=>{
+  if(!confirm("ล้างความคืบหน้าทั้งหมด (คำที่จำได้ / บทอ่าน / งานเขียนที่พิมพ์ไว้) ใช่ไหม?"))return;
+  LEVELS.forEach(l=>known[l.id]=new Set());S.read=[];S.write=[];S.drafts={};S.pos={einfach:0,mittel:0,schwer:0};
+  save();renderHome();toast("ล้างข้อมูลแล้ว");
+};
+
+/* ===================== VOCAB ===================== */
+let vFilter="all", vShuffle=false, vOrder={}, vFlip=false, vSearch="";
+const words=()=>VOCAB[S.lvl];
+function order(){
+  const n=words().length;
+  if(!vShuffle)return [...Array(n).keys()];
+  if(!vOrder[S.lvl]||vOrder[S.lvl].length!==n)vOrder[S.lvl]=shuffle([...Array(n).keys()]);
+  return vOrder[S.lvl];
+}
+function curSet(){
+  const k=known[S.lvl], w=words();
+  return order().filter(i=>vFilter==="all"||(vFilter==="new"?!k.has(w[i][0]):k.has(w[i][0])));
+}
+function renderVocab(){
+  renderLvlBar();
+  $$("#modeSeg button").forEach(b=>b.classList.toggle("on",b.dataset.mode===S.mode));
+  $$("#filterSeg button").forEach(b=>b.classList.toggle("on",b.dataset.f===vFilter));
+  $("#shuffleBtn").classList.toggle("on",vShuffle);
+  ["cards","list","quiz"].forEach(m=>$("#pane-"+m).classList.toggle("hidden",m!==S.mode));
+  if(S.mode==="cards")renderCards();
+  if(S.mode==="list")renderList();
+  if(S.mode==="quiz"){renderDir();newQ();}
+}
+function renderLvlBar(){
+  $("#lvlbar").innerHTML=LEVELS.map(l=>{
+    const n=known[l.id].size,t=VOCAB[l.id].length;
+    return `<button class="lvl ${S.lvl===l.id?"on":""}" data-lvl="${l.id}" style="--c:${l.color};--bg:${l.bg}">
+      <span class="lt"><b>${l.th}</b><span class="mono" style="color:${l.color}">${l.cefr}</span></span>
+      <span class="ln">จำได้ ${n}/${t}</span><span class="prog"><i style="width:${n/t*100}%"></i></span></button>`;
+  }).join("");
+}
+$("#lvlbar").onclick=e=>{const b=e.target.closest("[data-lvl]");if(!b)return;S.lvl=b.dataset.lvl;vFlip=false;save();renderVocab();};
+$("#modeSeg").onclick=e=>{const b=e.target.closest("[data-mode]");if(!b)return;S.mode=b.dataset.mode;save();renderVocab();};
+$("#filterSeg").onclick=e=>{const b=e.target.closest("[data-f]");if(!b)return;vFilter=b.dataset.f;S.pos[S.lvl]=0;vFlip=false;renderVocab();};
+$("#shuffleBtn").onclick=()=>{vShuffle=!vShuffle;vOrder={};S.pos[S.lvl]=0;vFlip=false;renderVocab();toast(vShuffle?"สุ่มลำดับคำแล้ว":"เรียงตามหมวด");};
+
+/* --- cards --- */
+function renderCards(anim){
+  const set=curSet(), L=LV(S.lvl);
+  $("#cardWrap").classList.toggle("hidden",!set.length);
+  $("#cardEmpty").classList.toggle("hidden",!!set.length);
+  if(!set.length){
+    $("#cardEmpty").innerHTML = vFilter==="new"
+      ? `<div style="font-size:2.4rem">🎉</div><b>เก่งมาก! จำได้ครบทุกคำในระดับ${L.th}แล้ว</b><br>ลองระดับถัดไป หรือเลือก “จำแล้ว” เพื่อทบทวน`
+      : `<div style="font-size:2.4rem">📭</div>ยังไม่มีคำที่ทำเครื่องหมายว่าจำได้<br>ไปที่ “ทั้งหมด” แล้วเริ่มท่องได้เลย`;
+    return;
+  }
+  let p=S.pos[S.lvl]||0; if(p>=set.length)p=0; S.pos[S.lvl]=p;
+  const w=words()[set[p]], isK=known[S.lvl].has(w[0]), fc=$("#fcard");
+  fc.style.setProperty("--c",L.color);
+  const tags=`<div class="fc-tags"><span class="tag">${POS[w[1]]||w[1]}</span>${isK?'<span class="tag ok">✓ จำได้แล้ว</span>':""}</div>`;
+  fc.innerHTML = !vFlip
+    ? `${tags}<div class="fc-word">${fmtWord(w[0])}</div>
+       <button class="chip" data-say="w">🔊 ฟังเสียง</button>
+       <div class="fc-hint">👆 แตะเพื่อดูความหมาย</div>`
+    : `${tags}<div class="fc-th">${esc(w[2])}</div><div class="fc-en">${esc(w[3])}</div>
+       <div class="fc-sep"></div>
+       <div class="fc-ex">${esc(w[4])} <button class="say" data-say="ex">🔊</button></div>
+       <div class="fc-exth">${esc(w[5])}</div>`;
+  if(anim!==false){fc.classList.remove("anim");void fc.offsetWidth;fc.classList.add("anim");}
+  $("#cardCount").textContent=`คำที่ ${p+1} / ${set.length}`;
+  $("#cardProg").style.width=((p+1)/set.length*100)+"%";
+  $("#cardProg").style.setProperty("--c",L.color);
+}
+function curWord(){const set=curSet();return set.length?words()[set[S.pos[S.lvl]||0]]:null;}
+function flip(){vFlip=!vFlip;renderCards();}
+function cardNext(d){
+  const n=curSet().length;if(!n)return;
+  S.pos[S.lvl]=((S.pos[S.lvl]||0)+d+n)%n;vFlip=false;saveSoon();renderCards();
+}
+function markCard(yes){
+  const set=curSet();if(!set.length)return;
+  const p=S.pos[S.lvl]||0, w=words()[set[p]][0];
+  yes?known[S.lvl].add(w):known[S.lvl].delete(w);
+  const leaves=(vFilter==="new"&&yes)||(vFilter==="known"&&!yes);
+  const n=curSet().length;
+  let np=leaves?p:p+1;
+  if(np>=n){np=0;if(n)toast("ครบรอบแล้ว 👏 เริ่มรอบใหม่");}
+  S.pos[S.lvl]=np;vFlip=false;save();renderLvlBar();renderCards();
+}
+let tx=null, swiped=false;
+const fcEl=$("#fcard");
+fcEl.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;},{passive:true});
+fcEl.addEventListener("touchend",e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(dx)>50){swiped=true;cardNext(dx<0?1:-1);}});
+fcEl.onclick=e=>{
+  if(swiped){swiped=false;return;}
+  const s=e.target.closest("[data-say]");
+  if(s){const w=curWord();if(w)speak(s.dataset.say==="w"?w[0]:w[4]);return;}
+  flip();
+};
+$("#prevBtn").onclick=()=>cardNext(-1);
+$("#nextBtn").onclick=()=>cardNext(1);
+$("#yesBtn").onclick=()=>markCard(true);
+$("#noBtn").onclick=()=>markCard(false);
+
+/* --- list --- */
+function renderList(){
+  const q=vSearch.trim().toLowerCase(), w=words(), k=known[S.lvl];
+  const set=curSet().filter(i=>!q||(w[i][0]+" "+w[i][2]+" "+w[i][3]).toLowerCase().includes(q));
+  $("#listCount").textContent=set.length+" คำ";
+  $("#wordlist").innerHTML=set.length?set.map(i=>{
+    const x=w[i], isK=k.has(x[0]);
+    return `<div class="row ${isK?"k":""}" data-i="${i}">
+      <button class="chk" data-act="k" aria-label="จำได้">${isK?"✓":""}</button>
+      <div class="row-main" data-act="x"><div><b>${fmtWord(x[0])}</b> <span class="pos">${POS[x[1]]||x[1]}</span></div>
+        <div class="row-th">${esc(x[2])} · <i>${esc(x[3])}</i></div>
+        <div class="row-ex hidden">${esc(x[4])}<br><span>${esc(x[5])}</span></div></div>
+      <button class="say" data-act="s" aria-label="ฟังเสียง">🔊</button></div>`;
+  }).join(""):`<p class="empty">ไม่พบคำที่ค้นหา</p>`;
+}
+$("#search").oninput=e=>{vSearch=e.target.value;renderList();};
+$("#wordlist").onclick=e=>{
+  const a=e.target.closest("[data-act]");if(!a)return;
+  const row=a.closest(".row"), x=words()[+row.dataset.i];
+  if(a.dataset.act==="s")speak(x[0]);
+  else if(a.dataset.act==="x")row.querySelector(".row-ex").classList.toggle("hidden");
+  else{
+    const k=known[S.lvl];k.has(x[0])?k.delete(x[0]):k.add(x[0]);save();renderLvlBar();
+    if(vFilter==="all"){row.classList.toggle("k");a.textContent=k.has(x[0])?"✓":"";}else renderList();
+  }
+};
+
+/* --- quiz --- */
+let Q={ok:0,total:0,streak:0,dir:"de",cur:null,opts:[],picked:null,timer:null};
+function renderDir(){$$("#dirSeg button").forEach(b=>b.classList.toggle("on",b.dataset.dir===Q.dir));}
+$("#dirSeg").onclick=e=>{const b=e.target.closest("[data-dir]");if(!b)return;Q.dir=b.dataset.dir;renderDir();newQ();};
+function newQ(){
+  clearTimeout(Q.timer);
+  const all=words();let pool=curSet();if(!pool.length)pool=[...all.keys()];
+  let ci;do{ci=pool[Math.floor(Math.random()*pool.length)];}while(pool.length>1&&ci===Q.cur);
+  const opts=[ci];let g=0;
+  while(opts.length<4&&g++<200){const r=Math.floor(Math.random()*all.length);
+    if(!opts.includes(r)&&all[r][2]!==all[ci][2]&&all[r][0]!==all[ci][0])opts.push(r);}
+  Q.cur=ci;Q.opts=shuffle(opts);Q.picked=null;renderQuiz();
+}
+function renderQuiz(){
+  const all=words(), w=all[Q.cur], de=Q.dir==="de", L=LV(S.lvl);
+  $("#qcard").style.setProperty("--c",L.color);
+  const done=Q.picked!==null, right=done&&Q.opts[Q.picked]===Q.cur;
+  $("#qcard").innerHTML=`
+    <div class="mono" style="color:${L.color}">${de?"คำนี้แปลว่าอะไร":"ภาษาเยอรมันคือคำไหน"}</div>
+    <div class="qword">${de?fmtWord(w[0]):esc(w[2])} ${de?'<button class="say" id="qSay">🔊</button>':""}</div>
+    ${Q.opts.map((o,i)=>{
+      let cls="";if(done){if(o===Q.cur)cls="good";else if(i===Q.picked)cls="bad";}
+      return `<button class="opt ${cls}" data-o="${i}"><span>${de?esc(all[o][2]):fmtWord(all[o][0])}</span><span class="k">${cls==="good"?"✓":cls==="bad"?"✕":i+1}</span></button>`;
+    }).join("")}
+    ${done?`<div style="margin-top:8px;padding:12px;border-radius:10px;background:var(--cardAlt)">
+       <b>${right?"✓ ถูกต้อง!":"✕ ยังไม่ถูก"}</b> ${fmtWord(w[0])} = ${esc(w[2])}<br>
+       <span style="font-size:.95rem">${esc(w[4])}</span><br><span style="font-size:.9rem;color:var(--inkFaint)">${esc(w[5])}</span></div>
+       <button class="btn" style="width:100%;margin-top:12px" id="qNext">ข้อถัดไป →</button>`:""}`;
+  $("#qScore").textContent=`คะแนน ${Q.ok}/${Q.total}`;
+  $("#qStreak").textContent=Q.streak>1?`🔥 ถูกติดกัน ${Q.streak} ข้อ`:"";
+}
+function pickQ(i){
+  if(Q.picked!==null||i>=Q.opts.length)return;
+  Q.picked=i;Q.total++;const ok=Q.opts[i]===Q.cur;
+  if(ok){Q.ok++;Q.streak++;}else Q.streak=0;
+  if(Q.dir==="th"||!ok)speak(words()[Q.cur][0]);
+  renderQuiz();
+  if(ok)Q.timer=setTimeout(newQ,1300);
+}
+$("#qcard").onclick=e=>{
+  if(e.target.closest("#qSay")){speak(words()[Q.cur][0]);return;}
+  if(e.target.closest("#qNext")){newQ();return;}
+  const o=e.target.closest("[data-o]");if(o)pickQ(+o.dataset.o);
+};
+
+/* keyboard */
+document.addEventListener("keydown",e=>{
+  if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||$("#vocab").classList.contains("hidden"))return;
+  if(S.mode==="cards"){
+    if(e.key===" "){e.preventDefault();flip();}
+    else if(e.key==="ArrowRight")cardNext(1);
+    else if(e.key==="ArrowLeft")cardNext(-1);
+    else if(e.key==="ArrowUp"){e.preventDefault();markCard(true);}
+    else if(e.key==="ArrowDown"){e.preventDefault();markCard(false);}
+  }else if(S.mode==="quiz"){
+    if(["1","2","3","4"].includes(e.key))pickQ(+e.key-1);
+    else if(e.key==="Enter"&&Q.picked!==null)newQ();
+  }
+});
+
+/* ===================== READING ===================== */
+let rLvl="einfach", rAns={};
+function renderRead(){
+  $("#readSeg").innerHTML=LEVELS.map(l=>`<button data-r="${l.id}" class="${rLvl===l.id?"on":""}">${l.th} · ${l.cefr}${S.read.includes(l.id)?" ✓":""}</button>`).join("");
+  const p=READING[rLvl];
+  $("#rTitle").textContent=p.title;
+  $("#rText").textContent=p.text;
+  $("#rTrans").textContent=p.trans;
+  $("#rTrans").classList.add("hidden");
+  $("#rTransBtn").textContent="🇹🇭 แสดงคำแปลไทย";
+  renderRQs();
+}
+function renderRQs(){
+  const p=READING[rLvl];
+  $("#rQs").innerHTML=p.q.map((q,qi)=>{
+    const a=rAns[qi];
+    return `<div class="card qbox"><div class="q">${qi+1}. ${esc(q.q)}</div>
+      ${q.o.map((o,oi)=>{let c="";if(a!==undefined){if(oi===q.a)c="good";else if(oi===a)c="bad";}
+        return `<button class="opt ${c}" data-q="${qi}" data-o="${oi}"><span>${esc(o)}</span><span>${c==="good"?"✓":c==="bad"?"✕":""}</span></button>`;}).join("")}
+    </div>`;
+  }).join("");
+  const n=Object.keys(rAns).length;
+  if(n===p.q.length){
+    const ok=p.q.filter((q,i)=>rAns[i]===q.a).length;
+    $("#rResult").innerHTML=`<div class="card result"><div style="font-size:2rem">${ok===p.q.length?"🏆":ok>=p.q.length/2?"👍":"💪"}</div>
+      <h3>ตอบถูก ${ok} / ${p.q.length} ข้อ</h3>
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
+        <button class="btn ghost" id="rRetry">↺ ทำใหม่</button>
+        ${nextLvl(rLvl)?`<button class="btn" id="rNext">บทถัดไป →</button>`:""}</div></div>`;
+  }else $("#rResult").innerHTML="";
+}
+function nextLvl(id){const i=LEVELS.findIndex(l=>l.id===id);return LEVELS[i+1]?LEVELS[i+1].id:null;}
+$("#readSeg").onclick=e=>{const b=e.target.closest("[data-r]");if(!b)return;rLvl=b.dataset.r;rAns={};renderRead();};
+$("#rTransBtn").onclick=()=>{const t=$("#rTrans");t.classList.toggle("hidden");$("#rTransBtn").textContent=t.classList.contains("hidden")?"🇹🇭 แสดงคำแปลไทย":"ซ่อนคำแปล";};
+$("#rSay").onclick=()=>speak(READING[rLvl].text);
+$("#rQs").onclick=e=>{
+  const b=e.target.closest("[data-q]");if(!b)return;const qi=+b.dataset.q;
+  if(rAns[qi]!==undefined)return;rAns[qi]=+b.dataset.o;
+  if(Object.keys(rAns).length===READING[rLvl].q.length&&!S.read.includes(rLvl)){S.read.push(rLvl);save();}
+  renderRQs();
+};
+$("#rResult").onclick=e=>{
+  if(e.target.closest("#rRetry")){rAns={};renderRQs();window.scrollTo({top:0,behavior:"smooth"});}
+  if(e.target.closest("#rNext")){rLvl=nextLvl(rLvl);rAns={};renderRead();window.scrollTo(0,0);}
+};
+
+/* ===================== WRITING ===================== */
+let wI=0;
+function renderWrite(){
+  $("#wSel").innerHTML=LEVELS.map(l=>`<optgroup label="${l.th} (${l.cefr})">${
+    WRITING.map((p,i)=>p.lvl===l.id?`<option value="${i}" ${i===wI?"selected":""}>${S.write.includes(i)?"✓ ":""}${i+1}. ${esc(p.th)}</option>`:"").join("")
+  }</optgroup>`).join("");
+  const p=WRITING[wI], L=LV(p.lvl);
+  $("#wcard").style.setProperty("--c",L.color);
+  $("#wLvl").textContent=`${L.th} · ${L.cefr}`;
+  $("#wNum").textContent=`โจทย์ ${wI+1} / ${WRITING.length}`;
+  $("#wTask").textContent=p.task;
+  $("#wTh").textContent=p.th;
+  $("#wText").value=S.drafts[wI]||"";
+  $("#wSaved").textContent=S.drafts[wI]?"✓ บันทึกไว้แล้ว":"";
+  wCount();
+  $("#wModel").innerHTML="";
+  $("#wShow").textContent=S.write.includes(wI)?"ดูเฉลยอีกครั้ง":"ดูเฉลย + เช็กลิสต์";
+}
+function wCount(){const t=$("#wText").value.trim();$("#wCount").textContent=(t?t.split(/\s+/).length:0)+" คำ";}
+$("#wSel").onchange=e=>{wI=+e.target.value;renderWrite();};
+$("#wPrev").onclick=()=>{wI=(wI-1+WRITING.length)%WRITING.length;renderWrite();};
+$("#wNext").onclick=()=>{wI=(wI+1)%WRITING.length;renderWrite();};
+$("#wText").oninput=e=>{
+  S.drafts[wI]=e.target.value;wCount();$("#wSaved").textContent="กำลังบันทึก…";
+  clearTimeout(saveT);saveT=setTimeout(()=>{save();$("#wSaved").textContent="✓ บันทึกแล้ว";},500);
+};
+$("#wShow").onclick=()=>{
+  const p=WRITING[wI];
+  if(!S.write.includes(wI)){S.write.push(wI);save();}
+  $("#wModel").innerHTML=`
+    <div class="card mbox" style="border-left:4px solid var(--sage)">
+      <div class="mt"><span class="mono" style="color:var(--sage)">✓ เฉลยตัวอย่าง · Musterlösung</span><button class="chip" id="mSay">🔊 ฟัง</button></div>
+      <div class="model">${esc(p.model)}</div>
+    </div>
+    <div class="card mbox"><span class="mono" style="color:var(--gold)">วลีที่นำไปใช้ได้</span>
+      <ul class="tips">${p.tips.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>
+    <div class="card mbox"><span class="mono" style="color:var(--ox)">เช็กลิสต์ตรวจงานของตัวเอง</span>
+      <div style="margin-top:6px">${CHECKLIST.map(c=>`<label class="check-row"><input type="checkbox"><span>${esc(c)}</span></label>`).join("")}</div></div>
+    <button class="btn" style="width:100%;margin-top:12px" id="mNext">โจทย์ถัดไป →</button>`;
+  $("#wShow").textContent="ดูเฉลยอีกครั้ง";
+  $("#wModel").scrollIntoView({behavior:"smooth",block:"start"});
+};
+$("#wModel").onclick=e=>{
+  if(e.target.closest("#mSay"))speak(WRITING[wI].model);
+  if(e.target.closest("#mNext")){wI=(wI+1)%WRITING.length;renderWrite();window.scrollTo({top:0,behavior:"smooth"});}
+};
+
+/* ===================== INIT ===================== */
+load();applyFs();show("home");
+</script>
+</body>
+</html>
